@@ -1,5 +1,5 @@
 // src/app/lost/page.js
-export default function CurrentLostDogPage() {
+export default function HelpMungzPage() {
     return (
         <div>
             <h2>Current Lost Dog Information</h2>
