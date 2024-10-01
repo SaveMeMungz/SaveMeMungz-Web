@@ -5,6 +5,8 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
     :root {
         --max-width: 100%;
+        --min-width: 320px;
+        font-size: 16px;
     }
 
   * {
@@ -28,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
 
     main {
     width: 100%; 
+    min-width: var(--min-width);
     min-height: 100vh;
     background-color: white;
     overflow-x: hidden;
@@ -36,11 +39,32 @@ const GlobalStyle = createGlobalStyle`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-    @media (max-width: 430px) {
-        main {
-            width: 100%;
+    /* 모바일  */
+    @media (max-width: 320px) {
+        body, main {
+            min-width: 320px;
         }
     }
+
+    /* 웹 */
+    @media (min-width: 431px) {
+        :root {
+            font-size: 18px;
+        }
+        main {
+            width: 430px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        :root {
+            font-size: 20px;
+        }
+        main {
+            width: 480px;
+        }
+    }
+
 
     .container {
         padding: 0 var(--horizontal-padding);
