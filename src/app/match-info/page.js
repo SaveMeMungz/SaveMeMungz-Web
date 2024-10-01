@@ -1,9 +1,11 @@
-// src/app/match/lets/page.js
-export default function LetsMatchPage() {
+import styled from 'styled-components';
+
+const MatchInfo = () => {
     return (
         <div>
-            <h2>Let's Match!</h2>
-            <p>Find your ideal match here...</p>
+            <h2>정보 입력 페이지</h2>
         </div>
     );
-}
+};
+
+export default MatchInfo;

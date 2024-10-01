@@ -1,13 +1,11 @@
-// src/app/mypage/edit/page.js
-export default function EditMyInfoPage() {
+import styled from 'styled-components';
+
+const EditInfo = () => {
     return (
         <div>
-            <h2>Edit My Information</h2>
-            <form>
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email" />
-                <button type="submit">Save Changes</button>
-            </form>
+            <h2>정보 수정 페이지</h2>
         </div>
     );
-}
+};
+
+export default EditInfo;

@@ -1,5 +1,6 @@
-// src/app/auth/login/page.js
-export default function LoginPage() {
+import styled from 'styled-components';
+
+const Login = () => {
     return (
         <div>
             <h1>Login Page</h1>
@@ -10,4 +11,6 @@ export default function LoginPage() {
             </form>
         </div>
     );
-}
+};
+
+export default Login;

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-const MyPage = () => {
+const Onboarding = () => {
     return (
         <div>
-            <h2>마이페이지</h2>
+            <h2>온보딩</h2>
         </div>
     );
 };
 
-export default MyPage;
+export default Onboarding;

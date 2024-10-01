@@ -1,9 +1,12 @@
-// src/app/match/mbti/page.js
-export default function MbtiMatchPage() {
+import styled from 'styled-components';
+
+const MbtiMatch = () => {
     return (
         <div>
-            <h2>MBTI Match</h2>
-            <p>Find your match based on MBTI...</p>
+            <h2>홈</h2>
+            <p>mbti 매칭</p>
         </div>
     );
-}
+};
+
+export default MbtiMatch;

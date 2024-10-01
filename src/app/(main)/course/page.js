@@ -1,9 +1,12 @@
-// src/app/map/page.js
-export default function MapPage() {
+import styled from 'styled-components';
+
+const Course = () => {
     return (
         <div>
             <h2>Recommended Walking Routes</h2>
             <p>Explore nearby walking routes for you and your dog...</p>
         </div>
     );
-}
+};
+
+export default Course;
