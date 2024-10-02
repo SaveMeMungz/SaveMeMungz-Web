@@ -73,7 +73,6 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     position: relative;
     margin: 0 auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
     /* 모바일  */
