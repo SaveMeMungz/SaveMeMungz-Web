@@ -100,5 +100,5 @@ const TabContent = styled.div`
 const TabLabel = styled.span`
     font-size: 0.75rem;
     margin-top: 0.25rem;
-    font-weight: 500;
+    font-family: 'Pretendard-Medium';
 `;
