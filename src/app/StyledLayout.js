@@ -31,13 +31,11 @@ const MobileContainer = styled.div`
 
     @media (min-width: 431px) {
         width: 430px;
-        height: 932px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     @media (min-width: 768px) {
         width: 480px;
-        height: 1024px;
     }
 `;
 
