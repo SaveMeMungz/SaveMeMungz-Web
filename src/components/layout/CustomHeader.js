@@ -29,7 +29,6 @@ const HeaderContainer = styled.header`
     align-items: center;
     justify-content: center;
     height: 5rem;
-    border-bottom: 1px solid #ddd;
 `;
 
 const HeaderWrapper = styled.div`
