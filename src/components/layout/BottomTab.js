@@ -12,6 +12,7 @@ import mypageOff from '../../assets/icons/bottomTab/mypage-off.png';
 import mypageOn from '../../assets/icons/bottomTab/mypage-on.png';
 import searchOff from '../../assets/icons/bottomTab/search-off.png';
 import searchOn from '../../assets/icons/bottomTab/search-on.png';
+import { FONTS } from '../../constants/font';
 
 const tabs = [
     { name: 'home', label: '멍즈 찾기', path: '/home', onIcon: homeOn, offIcon: homeOff },
@@ -100,5 +101,5 @@ const TabContent = styled.div`
 const TabLabel = styled.span`
     font-size: 0.75rem;
     margin-top: 0.25rem;
-    font-family: 'Pretendard-Medium';
+    font-family: ${FONTS.PRETENDARD[500]};
 `;
