@@ -4,17 +4,17 @@ import styled from 'styled-components';
 
 const StyledLayout = ({ children }) => {
     return (
-        <PageWrapper>
+        <PageContainer>
             <MobileContainer>
-                <PageContainer>{children}</PageContainer>
+                <ContentContainer>{children}</ContentContainer>
             </MobileContainer>
-        </PageWrapper>
+        </PageContainer>
     );
 };
 
 export default StyledLayout;
 
-const PageWrapper = styled.div`
+const PageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,7 +41,7 @@ const MobileContainer = styled.div`
     }
 `;
 
-const PageContainer = styled.div`
+const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100%;

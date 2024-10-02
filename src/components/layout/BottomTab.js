@@ -22,49 +22,60 @@ const tabs = [
 
 const BottomTab = ({ currentPath }) => {
     return (
-        <BottomTabWrapper>
-            {tabs.map((tab) => {
-                const isActive = currentPath.startsWith(tab.path);
-                return (
-                    <TabItem key={tab.name}>
-                        <StyledLink href={tab.path} $isActive={isActive}>
-                            <TabContent>
-                                <Image
-                                    src={isActive ? tab.onIcon : tab.offIcon}
-                                    alt={tab.label}
-                                    width={24}
-                                    height={24}
-                                    style={{ width: '1.5rem', height: '1.5rem' }}
-                                />
-                                <TabLabel>{tab.label}</TabLabel>
-                            </TabContent>
-                        </StyledLink>
-                    </TabItem>
-                );
-            })}
-        </BottomTabWrapper>
+        <BottomTabContainer>
+            <BottomTabWrapper>
+                {tabs.map((tab) => {
+                    const isActive = currentPath.startsWith(tab.path);
+                    return (
+                        <TabItem key={tab.name}>
+                            <StyledLink href={tab.path} $isActive={isActive}>
+                                <TabContent>
+                                    <Image
+                                        src={isActive ? tab.onIcon : tab.offIcon}
+                                        alt={tab.label}
+                                        width={24}
+                                        height={24}
+                                        style={{ width: '1.5rem', height: '1.5rem' }}
+                                    />
+                                    <TabLabel>{tab.label}</TabLabel>
+                                </TabContent>
+                            </StyledLink>
+                        </TabItem>
+                    );
+                })}
+            </BottomTabWrapper>
+        </BottomTabContainer>
     );
 };
 
 export default BottomTab;
 
-const BottomTabWrapper = styled.nav`
+const BottomTabContainer = styled.nav`
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-
+    justify-content: center;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 4.24rem;
-    margin: 0 auto;
+`;
+
+const BottomTabWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+
+    height: 4.25rem; // 바텀탭 높이 68px
+    width: 100%;
     max-width: 480px;
 
-    @media (max-width: 430px) {
-        max-width: 100%;
+    @media (min-width: 431px) and (max-width: 767px) {
+        width: 430px;
+    }
+
+    @media (min-width: 768px) {
+        width: 480px;
     }
 `;
 

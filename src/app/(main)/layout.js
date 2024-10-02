@@ -26,7 +26,7 @@ const LayoutWrapper = styled.div`
     max-width: 480px;
     margin: 0 auto;
     position: relative;
-    background-color: gray;
+    background-color: #fff;
     overflow: hidden;
 
     @media (max-width: 430px) {
