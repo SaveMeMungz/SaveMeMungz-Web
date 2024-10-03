@@ -4,17 +4,17 @@ import styled from 'styled-components';
 
 const StyledLayout = ({ children }) => {
     return (
-        <PageWrapper>
+        <PageContainer>
             <MobileContainer>
-                <PageContainer>{children}</PageContainer>
+                <ContentContainer>{children}</ContentContainer>
             </MobileContainer>
-        </PageWrapper>
+        </PageContainer>
     );
 };
 
 export default StyledLayout;
 
-const PageWrapper = styled.div`
+const PageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,17 +31,15 @@ const MobileContainer = styled.div`
 
     @media (min-width: 431px) {
         width: 430px;
-        height: 932px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     @media (min-width: 768px) {
         width: 480px;
-        height: 1024px;
     }
 `;
 
-const PageContainer = styled.div`
+const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100%;
