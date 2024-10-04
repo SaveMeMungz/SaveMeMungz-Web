@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 const InfoMatch = () => {
     return (
         <div>

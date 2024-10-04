@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 const Course = () => {
     return (
         <div>

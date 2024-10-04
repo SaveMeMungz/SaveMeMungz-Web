@@ -2,19 +2,13 @@
 
 'use client';
 
-import styled from 'styled-components';
 import Image from 'next/image';
+import styled from 'styled-components';
 
 const Home = () => {
     return (
         <Main>
-            <Logo
-                src="/images/symbol.svg"
-                alt="구해줘 멍즈 로고"
-                width={300}
-                height={200}
-                priority
-            />
+            <Logo src="/images/symbol.svg" alt="구해줘 멍즈 로고" width={300} height={200} priority />
             <Title>구해줘 멍즈</Title>
             <Description>
                 구해줘 멍즈
