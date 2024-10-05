@@ -5,7 +5,9 @@ import styled from 'styled-components';
 
 import InfoBanner from '../../../components/common/InfoBanner';
 import CustomHeader from '../../../components/layout/CustomHeader';
+import { BACKGROUND_COLORS, COLORS, TEXT_COLORS } from '../../../constants/colors';
 import { FONTS } from '../../../constants/font';
+import { PADDING_HORIZONTAL, PADDING_VERTICAL } from '../../../constants/space';
 
 const Home = () => {
     return (
@@ -33,14 +35,15 @@ const Container = styled.div`
 `;
 
 const ContentContainer = styled.div`
+    ${PADDING_HORIZONTAL}
+    ${PADDING_VERTICAL}
     display: flex;
     flex-direction: column;
-    padding: 1rem 1.5rem;
     gap: 0.63rem;
 `;
 
 const SubTitle = styled.span`
-    color: #2a7363;
+    color: ${TEXT_COLORS.default};
     font-family: ${FONTS.PRETENDARD[700]};
     font-size: 1.125rem;
 `;
@@ -56,7 +59,7 @@ const StyledButton = styled(Button)`
     width: 100%;
     height: 3.75rem;
     border-radius: 0.5rem;
-    color: #fff;
+    color: ${COLORS.white};
     font-size: 1rem;
     font-family: ${FONTS.PRETENDARD[700]};
     border: none;
@@ -64,5 +67,5 @@ const StyledButton = styled(Button)`
 
 const Divider = styled.div`
     height: 0.5rem;
-    background-color: #eef8f6;
+    background-color: ${BACKGROUND_COLORS.banner};
 `;
