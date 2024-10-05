@@ -1,16 +1,14 @@
-import styled from 'styled-components';
-
-const SignUp = () => {
+const Login = () => {
     return (
         <div>
-            <h1>SignUp Page</h1>
+            <h1>Login Page</h1>
             <form>
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />
-                <button type="submit">SignUp</button>
+                <button type="submit">Login</button>
             </form>
         </div>
     );
 };
 
-export default SignUp;
+export default Login;
