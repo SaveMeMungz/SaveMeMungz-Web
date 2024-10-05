@@ -4,14 +4,13 @@ import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 
 import BottomTab from '../../components/layout/BottomTab';
-import CustomHeader from '../../components/layout/CustomHeader';
+import { COLORS } from '../../constants/colors';
 
 const MainLayout = ({ children }) => {
     const pathname = usePathname();
 
     return (
         <LayoutWrapper>
-            <CustomHeader />
             <MainContent>{children}</MainContent>
             <BottomTab currentPath={pathname} />
         </LayoutWrapper>
@@ -28,7 +27,7 @@ const LayoutWrapper = styled.div`
     max-width: 480px;
     margin: 0 auto;
     position: relative;
-    background-color: #fff;
+    background-color: ${COLORS.white};
     overflow: hidden;
 
     @media (max-width: 430px) {
