@@ -3,14 +3,15 @@
 import { Button } from 'antd';
 import styled from 'styled-components';
 
+import InfoBanner from '../../../components/common/InfoBanner';
+import CustomHeader from '../../../components/layout/CustomHeader';
 import { FONTS } from '../../../constants/font';
 
 const Home = () => {
     return (
         <Container>
-            <InfoBanner>
-                <Message>이번 주에는 10마리의 멍즈가 동행했습니다!</Message>
-            </InfoBanner>
+            <CustomHeader />
+            <InfoBanner message="이번주에는 10마리의 멍즈가 동행했어요!" />
             <ContentContainer>
                 <SubTitle>어떤 멍즈를 만나볼까요?</SubTitle>
                 <ButtonWrapper>
@@ -29,21 +30,6 @@ export default Home;
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-`;
-
-const InfoBanner = styled.div`
-    display: flex;
-    height: 3rem;
-    background-color: #f5faf9;
-    border-top: 1px solid #ddd;
-    align-items: center;
-    justify-content: center;
-`;
-
-const Message = styled.div`
-    color: #3ca690;
-    font-size: 0.875rem;
-    font-family: ${FONTS.PRETENDARD[500]};
 `;
 
 const ContentContainer = styled.div`

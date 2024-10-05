@@ -4,14 +4,12 @@ import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 
 import BottomTab from '../../components/layout/BottomTab';
-import CustomHeader from '../../components/layout/CustomHeader';
 
 const MainLayout = ({ children }) => {
     const pathname = usePathname();
 
     return (
         <LayoutWrapper>
-            <CustomHeader />
             <MainContent>{children}</MainContent>
             <BottomTab currentPath={pathname} />
         </LayoutWrapper>
