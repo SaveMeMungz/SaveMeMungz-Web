@@ -172,7 +172,7 @@ const InfoColumnContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    width: 8rem;
+    width: 6rem;
     flex-shrink: 0;
 `;
 
@@ -180,7 +180,7 @@ const InfoColumnContainer2 = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    width: 11rem;
+    width: 10rem;
     flex-shrink: 0;
 `;
 
