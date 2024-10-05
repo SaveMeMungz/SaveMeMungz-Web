@@ -4,6 +4,7 @@ import { Button } from 'antd';
 import styled from 'styled-components';
 
 import { FONTS } from '../../../constants/font';
+import RecommendProfileComponent from './RecommendProfileComponent';
 
 const Home = () => {
     return (
@@ -20,6 +21,8 @@ const Home = () => {
             </ContentContainer>
 
             <Divider />
+
+            <RecommendProfileComponent/>
         </Container>
     );
 };
