@@ -1,11 +1,21 @@
-// 예시 페이지 입니다. 추후에 splash 들어갈 예정
-
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
-const Home = () => {
+const Splash = () => {
+    const router = useRouter();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            router.push('/home');
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [router]);
+
     return (
         <Main>
             <Logo src="/images/symbol.svg" alt="구해줘 멍즈 로고" width={300} height={200} priority />
@@ -19,7 +29,7 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Splash;
 
 const Main = styled.main`
     flex: 1;
