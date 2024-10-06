@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import logoImg from '../assets/images/logo_white.png';
+import logoImg from '../assets/images/splash-logo.png';
 import symbolImg from '../assets/images/symbol.png';
 import { COLORS } from '../constants/colors';
 
@@ -31,9 +31,7 @@ const Splash = () => {
     return (
         <Main $isVisible={isVisible}>
             <Symbol src={symbolImg} alt="로고" width={240} height={211} />
-            <LogoContainer>
-                <Logo src={logoImg} alt="구해줘 멍즈" fill style={{ objectFit: 'contain' }} />
-            </LogoContainer>
+            <Logo src={logoImg} alt="구해줘 멍즈" width={300} />
         </Main>
     );
 };
@@ -49,7 +47,7 @@ const Main = styled.main`
     background-color: ${COLORS.accent};
     padding: 1rem;
 
-    gap: 3rem;
+    gap: 2.5rem;
 
     opacity: ${(props) => (props.$isVisible ? 1 : 0)};
     transition: opacity 0.3s ease-in;
@@ -60,12 +58,7 @@ const Symbol = styled(Image)`
     height: 13.2375rem;
 `;
 
-const LogoContainer = styled.div`
-    width: 15rem;
-    height: 3.1045rem;
-    position: relative;
-`;
-
 const Logo = styled(Image)`
-    object-fit: contain;
+    width: 15rem;
+    height: 3.47331rem;
 `;
