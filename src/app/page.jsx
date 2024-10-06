@@ -26,13 +26,13 @@ const Splash = () => {
             clearTimeout(animationTimer);
             clearTimeout(routeTimer);
         };
-    }, router);
+    }, [router]);
 
     return (
-        <Main isVisible={isVisible}>
+        <Main $isVisible={isVisible}>
             <Symbol src={symbolImg} alt="로고" width={240} height={211} />
             <LogoContainer>
-                <Logo src={logoImg} alt="구해줘 멍즈" layout="fill" objectFit="contain" />
+                <Logo src={logoImg} alt="구해줘 멍즈" fill style={{ objectFit: 'contain' }} />
             </LogoContainer>
         </Main>
     );
@@ -51,7 +51,7 @@ const Main = styled.main`
 
     gap: 3rem;
 
-    opacity: ${(props) => (props.isVisible ? 1 : 0)};
+    opacity: ${(props) => (props.$isVisible ? 1 : 0)};
     transition: opacity 0.3s ease-in;
 `;
 
