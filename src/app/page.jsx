@@ -1,25 +1,42 @@
-// 예시 페이지 입니다. 추후에 splash 들어갈 예정
-
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const Home = () => {
+import logoImg from '../assets/images/splash-logo.png';
+import symbolImg from '../assets/images/symbol.png';
+import { COLORS } from '../constants/colors';
+
+const Splash = () => {
+    const router = useRouter();
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const animationTimer = setTimeout(() => {
+            setIsVisible(false);
+        }, 1800);
+
+        const routeTimer = setTimeout(() => {
+            router.push('/home');
+        }, 2000);
+
+        return () => {
+            clearTimeout(animationTimer);
+            clearTimeout(routeTimer);
+        };
+    }, [router]);
+
     return (
-        <Main>
-            <Logo src="/images/symbol.svg" alt="구해줘 멍즈 로고" width={300} height={200} priority />
-            <Title>구해줘 멍즈</Title>
-            <Description>
-                구해줘 멍즈
-                <br />
-                함께하는 따뜻한 동행
-            </Description>
+        <Main $isVisible={isVisible}>
+            <Symbol src={symbolImg} alt="로고" width={240} height={211} />
+            <Logo src={logoImg} alt="구해줘 멍즈" width={300} />
         </Main>
     );
 };
 
-export default Home;
+export default Splash;
 
 const Main = styled.main`
     flex: 1;
@@ -27,19 +44,21 @@ const Main = styled.main`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: ${COLORS.accent};
+    padding: 1rem;
+
+    gap: 2.5rem;
+
+    opacity: ${(props) => (props.$isVisible ? 1 : 0)};
+    transition: opacity 0.3s ease-in;
+`;
+
+const Symbol = styled(Image)`
+    width: 15rem;
+    height: 13.2375rem;
 `;
 
 const Logo = styled(Image)`
-    margin-bottom: 2rem;
-`;
-
-const Title = styled.h1`
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-`;
-
-const Description = styled.p`
-    text-align: center;
-    margin-bottom: 2rem;
+    width: 15rem;
+    height: 3.47331rem;
 `;
