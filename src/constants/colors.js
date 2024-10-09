@@ -6,6 +6,7 @@ export const COLORS = {
     accent: '#68DDC1', // 포인트 컬러 (밝은 민트)
     green: '#2A7363', // 녹색 text
     darkMint: '#6EA99D', // placeholder text
+    softMint: '#D9F5F0', // 마이페이지 요소 배경색
 
     mint: '#F0FCFA',
     lightMint: '#EEF8F6', // input 배경색 (밝은 민트)
@@ -28,6 +29,7 @@ export const BACKGROUND_COLORS = {
     tag: `${COLORS.lightGrey}`,
     divider: `${COLORS.mediumGrey}`,
     borderLine: `${COLORS.grey}`,
+    userStats: `${COLORS.softMint}`,
 };
 
 // 버튼 색

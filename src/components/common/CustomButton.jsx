@@ -7,10 +7,10 @@ import styled from 'styled-components';
 import { COLORS } from '../../constants/colors';
 import { FONTS } from '../../constants/font';
 
-const CustomButton = ({ color, route, text }) => {
+const CustomButton = ({ color, route, text, onClick }) => {
     const router = useRouter();
     const handleClick = () => {
-        router.push(route);
+        onClick ? onClick() : route && router.push(route);
     };
 
     return (
