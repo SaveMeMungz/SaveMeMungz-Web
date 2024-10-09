@@ -37,7 +37,7 @@ const CustomInput = ({ name, value, type = 'text', placeholder = '', options = [
 export default CustomInput;
 
 const InputContainer = styled.div`
-    ${PADDING_HORIZONTAL}
+    /* ${PADDING_HORIZONTAL} */
 `;
 
 const inputStyles = `
