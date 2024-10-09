@@ -4,9 +4,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { FONTS } from '../../../constants/font';
+import { FONTS } from '../../constants/font';
 
-const RecommendProfileComponent = () => {
+const DogProfileApi = ( { subtitle } ) => {
     const [profileData, setProfileData] = useState(null);
 
     useEffect(() => {
@@ -58,7 +58,7 @@ const RecommendProfileComponent = () => {
     };
 
     const extractCity = (address) => {
-        const cityRegex = /([가-힣]+시)/;
+        const cityRegex = /([가-힣]+(?:시|군|읍))/;
         const match = address.match(cityRegex);
         return match ? match[0] : address;
     };
@@ -71,7 +71,7 @@ const RecommendProfileComponent = () => {
     return (
         <RecommendationWrapper>
             <RecommendTitleRow>
-                <TodayRecommendMungz>오늘의 추천 멍즈 🐾</TodayRecommendMungz>
+                <TodayRecommendMungz>{subtitle}</TodayRecommendMungz>
             </RecommendTitleRow>
             <RecommendProfileContainer>
                 <ProfilePic src={profileData?.image || '/default-image.png'} />
@@ -98,19 +98,19 @@ const RecommendProfileComponent = () => {
                     <InfoColumnContainer2>
                         <DetailRow2>
                             <Label2>보호소명</Label2>
-                            <Data>{profileData?.shelterName || "정보 없음"}</Data>
+                            <Data2>{profileData?.shelterName || "정보 없음"}</Data2>
                         </DetailRow2>
                         <DetailRow2>
                             <Label2>연락처</Label2>
-                            <Data>{profileData?.contact || "정보 없음"}</Data>
+                            <Data2>{profileData?.contact || "정보 없음"}</Data2>
                         </DetailRow2>
                         <DetailRow2>
                             <Label2>중성화</Label2>
-                            <Data>{profileData?.neutered || "정보 없음"}</Data>
+                            <Data2>{profileData?.neutered || "정보 없음"}</Data2>
                         </DetailRow2>
                         <DetailRow2>
                             <Label2>특징</Label2>
-                            <Data>{profileData?.characteristic || "정보 없음"}</Data>
+                            <Data2>{profileData?.characteristic || "정보 없음"}</Data2>
                         </DetailRow2>
                     </InfoColumnContainer2>
                 </InfoRowContainerWrapper>
@@ -119,7 +119,7 @@ const RecommendProfileComponent = () => {
     );
 };
 
-export default RecommendProfileComponent;
+export default DogProfileApi;
 
 // 스타일링
 const RecommendationWrapper = styled.div`
@@ -165,7 +165,7 @@ const ProfilePic = styled.div`
 const InfoRowContainerWrapper = styled.div`
     display: flex;
     flex-direction: row;
-    gap: 0rem;
+    gap: 1.5rem;
 `;
 
 const InfoColumnContainer = styled.div`
@@ -186,7 +186,7 @@ const InfoColumnContainer2 = styled.div`
 
 const DetailRow = styled.div`
     display: flex;
-    gap: 0rem;
+    gap: 0.7rem;
 `;
 
 const DetailRow2 = styled.div`
@@ -216,4 +216,18 @@ const Data = styled.span`
     color: #347D6D;
     font-family: ${FONTS.PRETENDARD[400]};
     font-size: 0.75rem;
+    white-space: nowrap;  /* 텍스트 줄바꿈을 방지 */
+    overflow: hidden;     /* 넘치는 텍스트를 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트를 ...으로 표시 */
+    max-width: 100px;     /* 적절한 최대 너비를 설정 */
+`;
+
+const Data2 = styled.span`
+    color: #347D6D;
+    font-family: ${FONTS.PRETENDARD[400]};
+    font-size: 0.75rem;
+    white-space: nowrap;  /* 텍스트 줄바꿈을 방지 */
+    overflow: hidden;     /* 넘치는 텍스트를 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트를 ...으로 표시 */
+    max-width: 130px;     /* 적절한 최대 너비를 설정 */
 `;
