@@ -13,6 +13,16 @@ import SupportSection from './SupportSection';
 import UserStats from './UserStats';
 
 const MyPage = () => {
+    const handleLogout = () => {
+        // 로그아웃 로직
+        alert('로그아웃 하시겠습니까?');
+    };
+
+    const handleDeleteAccount = () => {
+        // 탈퇴 로직
+        alert('정말 탈퇴하시겠습니까?');
+    };
+
     return (
         <Container>
             <CustomHeader title="마이페이지" />
@@ -25,10 +35,12 @@ const MyPage = () => {
             {/* 버튼 영역 */}
             <ButtonWrapper>
                 <CustomButton color={BUTTON_COLORS.accent} text="나의 정보 수정하기" route="/mypage/edit" />
-                <CustomButton color={BUTTON_COLORS.primary} text="로그아웃" />
+                <CustomButton onClick={handleLogout} color={BUTTON_COLORS.primary} text="로그아웃" />
             </ButtonWrapper>
             {/* 고객지원 */}
             <SupportSection />
+            {/* 탈퇴 버튼 */}
+            <DeleteAccount onClick={handleDeleteAccount}>회원 탈퇴하기</DeleteAccount>
         </Container>
     );
 };
@@ -68,4 +80,19 @@ const ButtonWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+`;
+
+const DeleteAccount = styled.p`
+    display: flex;
+    justify-content: center;
+    margin-top: 6rem;
+    cursor: pointer;
+    font-family: ${FONTS.PRETENDARD[700]};
+    font-size: 0.875rem;
+    color: ${TEXT_COLORS.red};
+    text-decoration: underline;
+
+    &:hover {
+        opacity: 0.7;
+    }
 `;

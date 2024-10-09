@@ -23,8 +23,13 @@ const SupportSection = () => {
 export default SupportSection;
 
 const SupportItem = ({ icon, text }) => {
+    const handleClick = () => {
+        alert('준비중인 기능입니다!');
+        // 나중에 라우팅 처리
+    };
+
     return (
-        <ItemContainer>
+        <ItemContainer onClick={handleClick}>
             <IconWrapper>
                 <ItemIcon src={icon} alt={text} width={38} height={38} />
                 <ItemText>{text}</ItemText>
@@ -55,6 +60,7 @@ const ItemContainer = styled.div`
     border-radius: 0.75rem;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 `;
 
 const IconWrapper = styled.div`
