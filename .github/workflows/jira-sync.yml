@@ -21,4 +21,11 @@ jobs:
         project: ISSUE
         issuetype: Task
         summary: '${{ github.event.issue.title }}'
-        description: '${{ github.event.issue.html_url }}'
+        description: |
+          GitHub Issue URL: ${{ github.event.issue.html_url }}
+          
+          Description:
+          ${{ github.event.issue.body }}
+          
+          Created by: ${{ github.event.issue.user.login }}
+          Labels: ${{ join(github.event.issue.labels.*.name, ', ') }}
