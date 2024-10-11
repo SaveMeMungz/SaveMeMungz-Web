@@ -18,7 +18,7 @@ jobs:
     - name: Process Issue Body
       id: process_body
       run: |
-        BODY=$(echo '${{ github.event.issue.body }}' | sed 's/<!--.*-->//g' | sed 's/^## 💥 이슈 설명/h2. 💥 이슈 설명/g' | sed 's/^## 📚 TO-DO/h2. 📚 TO-DO/g' | sed 's/^## 👀 참고 사항/h2. 👀 참고 사항/g' | sed 's/^- \[ \] /* /g' | sed 's/^  - \[ \] /** /g' | sed 's/^    - \[ \] /*** /g')
+        BODY=$(echo '${{ github.event.issue.body }}' | perl -0pe 's/<!--[\s\S]*?-->//g' | sed 's/^## 💥 이슈 설명/h2. 💥 이슈 설명/g' | sed 's/^## 📚 TO-DO/h2. 📚 TO-DO/g' | sed 's/^## 👀 참고 사항/h2. 👀 참고 사항/g' | sed 's/^- \[ \] /* /g' | sed 's/^  - \[ \] /** /g' | sed 's/^    - \[ \] /*** /g')
         echo "processed_body<<EOF" >> $GITHUB_OUTPUT
         echo "$BODY" >> $GITHUB_OUTPUT
         echo "EOF" >> $GITHUB_OUTPUT
