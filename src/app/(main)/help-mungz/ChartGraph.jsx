@@ -1,3 +1,5 @@
+// 유기견 현황 임시 그래프 - 삭제 예정
+
 'use client';
 
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
