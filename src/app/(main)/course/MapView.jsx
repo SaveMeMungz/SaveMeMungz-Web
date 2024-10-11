@@ -16,10 +16,15 @@ const MapView = () => {
             window.kakao.maps.load(() => {
                 const container = mapRef.current;
                 const options = {
-                    center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-                    level: 3,
+                    center: new window.kakao.maps.LatLng(37.2850839, 127.0786632),
+                    level: 2,
                 };
-                new window.kakao.maps.Map(container, options);
+                const map = new window.kakao.maps.Map(container, options);
+                const markerPosition = new window.kakao.maps.LatLng(37.2850839, 127.0786632); // 마커 찍을 위치
+                const marker = new window.kakao.maps.Marker({
+                    position: markerPosition,
+                });
+                marker.setMap(map);
             });
         };
 
