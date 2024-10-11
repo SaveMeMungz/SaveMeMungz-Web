@@ -15,6 +15,14 @@ jobs:
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
         JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
     
+    - name: Process Issue Body
+      id: process_body
+      run: |
+        BODY=$(echo '${{ github.event.issue.body }}' | sed 's/<!--.*-->//g' | sed 's/^## 💥 이슈 설명/h2. 💥 이슈 설명/g' | sed 's/^## 📚 TO-DO/h2. 📚 TO-DO/g' | sed 's/^## 👀 참고 사항/h2. 👀 참고 사항/g' | sed 's/^- \[ \] /* /g' | sed 's/^  - \[ \] /** /g' | sed 's/^    - \[ \] /*** /g')
+        echo "processed_body<<EOF" >> $GITHUB_OUTPUT
+        echo "$BODY" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
     - name: Create Issue 
       uses: atlassian/gajira-create@v3
       with:
@@ -27,14 +35,4 @@ jobs:
           * 생성자: ${{ github.event.issue.user.login }}
           * 라벨: ${{ join(github.event.issue.labels.*.name, ', ') }}
 
-          ${{ 
-            github.event.issue.body
-            | replace('<!--', '')
-            | replace('-->', '')
-            | replace('## 💥 이슈 설명', 'h2. 💥 이슈 설명')
-            | replace('## 📚 TO-DO', 'h2. 📚 TO-DO')
-            | replace('## 👀 참고 사항', 'h2. 👀 참고 사항')
-            | replace('- [ ] ', '* ')
-            | replace('  - [ ] ', '** ')
-            | replace('    - [ ] ', '*** ')
-          }}
+          ${{ steps.process_body.outputs.processed_body }}
