@@ -23,18 +23,18 @@ jobs:
         summary: '${{ github.event.issue.title }}'
         description: |
           h2. 이슈 상세 정보
-          * GitHub Issue URL: [${{ github.event.issue.html_url }}]
+          * GitHub Issue URL: ${{ github.event.issue.html_url }}
           * 생성자: ${{ github.event.issue.user.login }}
           * 라벨: ${{ join(github.event.issue.labels.*.name, ', ') }}
 
           ${{ 
-            github.event.issue.body && 
             github.event.issue.body
-              .replace(/<!--[\s\S]*?-->/g, '')
-              .replace(/^## 💥 이슈 설명/m, 'h2. 💥 이슈 설명')
-              .replace(/^## 📚 TO-DO/m, 'h2. 📚 TO-DO')
-              .replace(/^## 👀 참고 사항/m, 'h2. 👀 참고 사항')
-              .replace(/^- \[ \] /gm, '* ')
-              .replace(/^  - \[ \] /gm, '** ')
-              .replace(/^    - \[ \] /gm, '*** ')
+            | replace('<!--', '')
+            | replace('-->', '')
+            | replace('## 💥 이슈 설명', 'h2. 💥 이슈 설명')
+            | replace('## 📚 TO-DO', 'h2. 📚 TO-DO')
+            | replace('## 👀 참고 사항', 'h2. 👀 참고 사항')
+            | replace('- [ ] ', '* ')
+            | replace('  - [ ] ', '** ')
+            | replace('    - [ ] ', '*** ')
           }}
