@@ -13,11 +13,6 @@ import DogProfileComponent from './DogProfile';
 
 const Home = () => {
 
-
-
-
-
-
     return (
         <Container>
             <CustomHeader />

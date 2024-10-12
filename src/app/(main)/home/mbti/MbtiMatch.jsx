@@ -28,10 +28,16 @@ const MbtiMatchComponent = () => {
 
     return (
         <MatchInfoContainer>
-            <Title>
-                나의 MBTI <Highlighted>{matchData.userMbti}</Highlighted> 와 잘맞는
-                멍BTI는 <Highlighted>{matchData.matchedMbti}</Highlighted> 입니다
-            </Title>
+            <TitleContainer>
+                <Title>
+                    나의 MBTI <Highlighted>{matchData.userMbti}</Highlighted> 와 잘맞는
+                </Title>
+                <Title>
+                    멍BTI는 <Highlighted>{matchData.matchedMbti}</Highlighted> 입니다
+                </Title>
+            </TitleContainer>
+
+
             <Description>{matchData.description}</Description>
             <DogsContainer>
                 {matchData.matchedDogs.map((dog, index) => (
@@ -52,6 +58,7 @@ export default MbtiMatchComponent;
 const MatchInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 19.0625rem;
     padding: 1rem;
     align-items: center;
@@ -60,7 +67,18 @@ const MatchInfoContainer = styled.div`
     background: ${BACKGROUND_COLORS.lightgrey};
     
 `
+
+const TitleContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+`
+
 const Title = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     font-family: ${FONTS.PRETENDARD[500]};
     font-size: 1rem;
     color : ${TEXT_COLORS.secondary};

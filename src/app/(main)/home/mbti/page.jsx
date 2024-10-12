@@ -17,7 +17,9 @@ const MbtiMatch = () => {
         <>
             <CustomHeader title="MBTI 매칭" showBackBtn={true} />
             <InfoBanner message="나와 멍BTI가 맞는 찰떡궁합 멍즈를 찾았어요! 🐶" />
-            <MbtiMatchComponent />
+            <MbtiMatchContainer>
+                <MbtiMatchComponent />
+            </MbtiMatchContainer>
             <SectionDivider/>
             <DogProfileComponent subtitle = "나와 맞는 멍즈를 찾았어요! 🐾"/>
             <ContentContainer>
@@ -32,6 +34,13 @@ const MbtiMatch = () => {
 
 export default MbtiMatch;
 
+const MbtiMatchContainer = styled.div`
+    ${PADDING_HORIZONTAL}
+    ${PADDING_VERTICAL}
+    display: flex;
+    justify-content: center;
+    width: 100%;
+`;
 
 const ContentContainer = styled.div`
     ${PADDING_HORIZONTAL}
