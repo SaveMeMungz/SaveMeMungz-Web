@@ -9,8 +9,10 @@ import CustomHeader from '../../../components/layout/CustomHeader';
 import { BUTTON_COLORS, TEXT_COLORS } from '../../../constants/colors';
 import { FONTS } from '../../../constants/font';
 import { PADDING_HORIZONTAL, PADDING_VERTICAL } from '../../../constants/space';
+import DogProfileComponent from './DogProfile';
 
 const Home = () => {
+
     return (
         <Container>
             <CustomHeader />
@@ -23,6 +25,7 @@ const Home = () => {
                 </ButtonWrapper>
             </ContentContainer>
             <SectionDivider />
+            <DogProfileComponent subtitle = "오늘의 추천 멍즈 🐾" />
         </Container>
     );
 };
@@ -53,3 +56,4 @@ const ButtonWrapper = styled.div`
     flex-direction: column;
     gap: 1rem;
 `;
+
