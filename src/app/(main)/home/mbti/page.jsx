@@ -35,30 +35,38 @@ const MbtiMatch = () => {
     }, []);
 
     return (
-        <>
+        <Container>
             <CustomHeader title="MBTI 매칭" showBackBtn={true} />
             <InfoBanner message="나와 멍BTI가 맞는 찰떡궁합 멍즈를 찾았어요! 🐶" />
             <MbtiMatchContainer>
                 <MbtiMatchComponent />
             </MbtiMatchContainer>
             <SectionDivider />
-            <MungzProfileCard
-                subtitle="나와 맞는 멍즈를 찾았어요! 🐾"
-                profileData={profileData}
-                isLoading={isLoading}
-                error={error}
-            />
+            <ContentContainer>
+                <MungzProfileCard
+                    subtitle="나와 맞는 멍즈를 찾았어요! 🐾"
+                    profileData={profileData}
+                    isLoading={isLoading}
+                    error={error}
+                />
+            </ContentContainer>
             <ContentContainer>
                 <ButtonWrapper>
                     <CustomButton color={BUTTON_COLORS.primary} text="동행 신청하기" route="/home/info" />
                     <CustomButton color={BUTTON_COLORS.secondary} text="보호소로 문의하기" route="/home/mbti" />
                 </ButtonWrapper>
             </ContentContainer>
-        </>
+        </Container>
     );
 };
 
 export default MbtiMatch;
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+`;
 
 const MbtiMatchContainer = styled.div`
     ${PADDING_HORIZONTAL}
@@ -73,7 +81,7 @@ const ContentContainer = styled.div`
     ${PADDING_VERTICAL}
     display: flex;
     flex-direction: column;
-    gap: 0.63rem;
+    gap: 0.6rem;
 `;
 
 const ButtonWrapper = styled.div`

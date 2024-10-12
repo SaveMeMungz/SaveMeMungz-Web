@@ -47,13 +47,17 @@ const Home = () => {
                     <CustomButton color={BUTTON_COLORS.primary} text="MBTI 매칭" route="/home/mbti" />
                 </ButtonWrapper>
             </ContentContainer>
+
             <SectionDivider />
-            <MungzProfileCard
-                subtitle="오늘의 추천 멍즈 🐾"
-                profileData={profileData}
-                isLoading={isLoading}
-                error={error}
-            />
+            {/* 추천 카드 */}
+            <ContentContainer>
+                <MungzProfileCard
+                    subtitle="오늘의 추천 멍즈 🐾"
+                    profileData={profileData}
+                    isLoading={isLoading}
+                    error={error}
+                />
+            </ContentContainer>
         </Container>
     );
 };
@@ -70,7 +74,7 @@ const ContentContainer = styled.div`
     ${PADDING_VERTICAL}
     display: flex;
     flex-direction: column;
-    gap: 0.63rem;
+    gap: 0.6rem;
 `;
 
 const SubTitle = styled.span`

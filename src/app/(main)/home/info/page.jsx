@@ -37,12 +37,16 @@ const InfoMatch = () => {
             <CustomHeader title="정보 기반 매칭" showBackBtn={true} />
             <InfoBanner message="동행자님의 입력 정보에 맞는 멍즈를 찾았어요! 🐶" />
             {/* <TagBox>태그가 들어갈 자리</TagBox> */}
-            <MungzProfileCard
-                subtitle="나와 맞는 멍즈를 찾았어요! 🐾"
-                profileData={profileData}
-                isLoading={isLoading}
-                error={error}
-            />
+            {/* 추천 카드 */}
+            <ContentContainer>
+                <MungzProfileCard
+                    subtitle="나와 맞는 멍즈를 찾았어요! 🐾"
+                    profileData={profileData}
+                    isLoading={isLoading}
+                    error={error}
+                />
+            </ContentContainer>
+            {/* 버튼 영역 */}
             <ContentContainer>
                 <ButtonWrapper>
                     <CustomButton color={BUTTON_COLORS.primary} text="동행 신청하기" route="/home/info" />
@@ -60,7 +64,7 @@ const ContentContainer = styled.div`
     ${PADDING_VERTICAL}
     display: flex;
     flex-direction: column;
-    gap: 0.63rem;
+    gap: 0.6rem;
 `;
 
 const ButtonWrapper = styled.div`
