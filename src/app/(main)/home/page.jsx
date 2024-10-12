@@ -2,7 +2,6 @@
 
 import styled from 'styled-components';
 
-import DogProfileApi from '../../../api/DogProfileApi/DogProfileApi';
 import CustomButton from '../../../components/common/CustomButton';
 import InfoBanner from '../../../components/common/InfoBanner';
 import SectionDivider from '../../../components/common/SectionDivider';
@@ -10,8 +9,15 @@ import CustomHeader from '../../../components/layout/CustomHeader';
 import { BUTTON_COLORS, TEXT_COLORS } from '../../../constants/colors';
 import { FONTS } from '../../../constants/font';
 import { PADDING_HORIZONTAL, PADDING_VERTICAL } from '../../../constants/space';
+import DogProfileComponent from './DogProfile';
 
 const Home = () => {
+
+
+
+
+
+
     return (
         <Container>
             <CustomHeader />
@@ -24,7 +30,7 @@ const Home = () => {
                 </ButtonWrapper>
             </ContentContainer>
             <SectionDivider />
-            <DogProfileApi />
+            <DogProfileComponent subtitle = "오늘의 추천 멍즈 🐾" />
         </Container>
     );
 };
