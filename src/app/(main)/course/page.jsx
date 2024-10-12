@@ -17,6 +17,7 @@ const Course = () => {
             <MapContainer>
                 <MapView />
             </MapContainer>
+            {/* 보호소 카드 컴포넌트 */}
             <CardWrapper>
                 <ShelterCardComponent />
             </CardWrapper>

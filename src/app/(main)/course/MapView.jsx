@@ -12,7 +12,7 @@ const MapView = () => {
         mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_API_KEY}&autoload=false`;
         document.head.appendChild(mapScript);
 
-        const onLoadKakapMap = () => {
+        const onLoadKakaoMap = () => {
             window.kakao.maps.load(() => {
                 const container = mapRef.current;
                 const options = {
@@ -28,9 +28,9 @@ const MapView = () => {
             });
         };
 
-        mapScript.addEventListener('load', onLoadKakapMap);
+        mapScript.addEventListener('load', onLoadKakaoMap);
 
-        return () => mapScript.removeEventListener('load', onLoadKakapMap);
+        return () => mapScript.removeEventListener('load', onLoadKakaoMap);
     }, []);
 
     return <StyledMapView ref={mapRef} />;
