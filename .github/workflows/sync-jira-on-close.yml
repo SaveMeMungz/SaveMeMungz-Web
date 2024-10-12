@@ -1,0 +1,41 @@
+name: Sync Jira on Issue Close
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  sync-jira:
+    name: Sync Jira Issue
+    runs-on: ubuntu-latest
+    steps:
+    - name: Login to Jira
+      uses: atlassian/gajira-login@v3
+      env:
+        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+
+    - name: Search for Jira Issue
+      id: search
+      uses: atlassian/gajira-search@v3
+      with:
+        jql: "project = ISSUE AND summary ~ '${{ github.event.issue.title }}' AND description ~ '${{ github.event.issue.html_url }}'"
+
+    - name: Transition Jira Issue
+      if: steps.search.outputs.issue != ''
+      uses: atlassian/gajira-transition@v3
+      with:
+        issue: ${{ steps.search.outputs.issue }}
+        transition: "Done"
+
+    - name: Comment on Jira Issue
+      if: steps.search.outputs.issue != ''
+      uses: atlassian/gajira-comment@v3
+      with:
+        issue: ${{ steps.search.outputs.issue }}
+        comment: "Issue Closed: ${{ github.event.issue.html_url }}"
+
+    - name: Log if no Jira issue found
+      if: steps.search.outputs.issue == ''
+      run: echo "No matching Jira issue found for GitHub issue ${{ github.event.issue.number }}"
