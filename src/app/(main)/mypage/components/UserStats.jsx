@@ -2,9 +2,9 @@
 
 import styled from 'styled-components';
 
-import { BACKGROUND_COLORS, TEXT_COLORS } from '../../../constants/colors';
-import { FONTS } from '../../../constants/font';
-import { PADDING_HORIZONTAL } from '../../../constants/space';
+import { BACKGROUND_COLORS, TEXT_COLORS } from '../../../../constants/colors';
+import { FONTS } from '../../../../constants/font';
+import { PADDING_HORIZONTAL } from '../../../../constants/space';
 
 const UserStats = () => {
     return (

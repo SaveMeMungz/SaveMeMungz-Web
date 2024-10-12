@@ -5,7 +5,7 @@
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import styled from 'styled-components';
 
-import { FONTS } from '../../../constants/font';
+import { FONTS } from '../../../../constants/font';
 
 const data = [
     { date: '10/07', count: 28 },

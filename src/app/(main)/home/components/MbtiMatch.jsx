@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -24,8 +24,6 @@ const MbtiMatchComponent = () => {
 
     if (!matchData) return <div>Loading...</div>;
 
-
-
     return (
         <MatchInfoContainer>
             <TitleContainer>
@@ -37,7 +35,6 @@ const MbtiMatchComponent = () => {
                 </Title>
             </TitleContainer>
 
-
             <Description>{matchData.description}</Description>
             <DogsContainer>
                 {matchData.matchedDogs.map((dog, index) => (
@@ -47,7 +44,7 @@ const MbtiMatchComponent = () => {
                 ))}
             </DogsContainer>
             <RecommendationText>
-                찰떡궁합 멍즈로 {matchData.matchedDogs.map(dog => dog.name).join('와 ')}를 추천합니다 :)
+                찰떡궁합 멍즈로 {matchData.matchedDogs.map((dog) => dog.name).join('와 ')}를 추천합니다 :)
             </RecommendationText>
         </MatchInfoContainer>
     );
@@ -65,15 +62,13 @@ const MatchInfoContainer = styled.div`
     gap: 0.5rem;
     border-radius: 1rem;
     background: ${BACKGROUND_COLORS.lightgrey};
-    
-`
+`;
 
 const TitleContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
-`
+`;
 
 const Title = styled.div`
     display: flex;
@@ -81,14 +76,14 @@ const Title = styled.div`
     justify-content: center;
     font-family: ${FONTS.PRETENDARD[500]};
     font-size: 1rem;
-    color : ${TEXT_COLORS.secondary};
-`
+    color: ${TEXT_COLORS.secondary};
+`;
 
 const Highlighted = styled.div`
     font-family: ${FONTS.PRETENDARD[500]};
     font-size: 1rem;
-    color : ${TEXT_COLORS.primary};
-`
+    color: ${TEXT_COLORS.primary};
+`;
 
 const Description = styled.div`
     font-size: 1rem;
@@ -118,6 +113,6 @@ const DogImage = styled.img`
 
 const RecommendationText = styled.p`
     font-size: 1rem;
-    color: #347D6D;
+    color: #347d6d;
     text-align: center;
 `;

@@ -9,8 +9,8 @@ import CustomHeader from '../../../components/layout/CustomHeader';
 import { BACKGROUND_COLORS, BUTTON_COLORS, TEXT_COLORS } from '../../../constants/colors';
 import { FONTS } from '../../../constants/font';
 import { PADDING_HORIZONTAL } from '../../../constants/space';
-import SupportSection from './SupportSection';
-import UserStats from './UserStats';
+import SupportSection from './components/SupportSection';
+import UserStats from './components/UserStats';
 
 const MyPage = () => {
     const handleLogout = () => {

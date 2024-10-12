@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { fetchDogProfile } from '../../../api/home/index';
-import { FONTS } from '../../../constants/font';
+import { fetchDogProfile } from '../../../../api/home/index';
+import { FONTS } from '../../../../constants/font';
 
 const DogProfileComponent = ({ subtitle }) => {
     const [profileData, setProfileData] = useState(null);
@@ -100,7 +100,7 @@ const RecommendationWrapper = styled.div`
 const RecommendTitleRow = styled.div``;
 
 const TodayRecommendMungz = styled.div`
-    color: #204B5A;
+    color: #204b5a;
     font-family: ${FONTS.PRETENDARD[700]};
     font-size: 1.125rem;
 `;
@@ -112,7 +112,7 @@ const RecommendProfileContainer = styled.div`
     justify-content: center;
     gap: 1.5rem;
     border-radius: 0.5rem;
-    border: 1px solid #A5A5A5;
+    border: 1px solid #a5a5a5;
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
     width: 21.375rem;
     padding: 1rem; /* padding을 사용해 내부 여백 추가 */
@@ -124,7 +124,7 @@ const ProfilePic = styled.div`
     height: 8.125rem;
     background-color: #eee;
     border-radius: 50%;
-    background-image: url(${props => props.src});
+    background-image: url(${(props) => props.src});
     background-size: cover;
     background-position: center;
 `;
@@ -162,7 +162,7 @@ const DetailRow2 = styled.div`
 `;
 
 const Label = styled.span`
-    color: #347D6D;
+    color: #347d6d;
     font-family: ${FONTS.PRETENDARD[700]};
     font-size: 0.75rem;
     width: 2rem; /* 고정된 너비 */
@@ -171,7 +171,7 @@ const Label = styled.span`
 `;
 
 const Label2 = styled.span`
-    color: #347D6D;
+    color: #347d6d;
     font-family: ${FONTS.PRETENDARD[700]};
     font-size: 0.75rem;
     width: 3rem; /* 고정된 너비 */
@@ -180,21 +180,21 @@ const Label2 = styled.span`
 `;
 
 const Data = styled.span`
-    color: #347D6D;
+    color: #347d6d;
     font-family: ${FONTS.PRETENDARD[400]};
     font-size: 0.75rem;
-    white-space: nowrap;  /* 텍스트 줄바꿈을 방지 */
-    overflow: hidden;     /* 넘치는 텍스트를 숨김 */
+    white-space: nowrap; /* 텍스트 줄바꿈을 방지 */
+    overflow: hidden; /* 넘치는 텍스트를 숨김 */
     text-overflow: ellipsis; /* 넘치는 텍스트를 ...으로 표시 */
-    max-width: 100px;     /* 적절한 최대 너비를 설정 */
+    max-width: 100px; /* 적절한 최대 너비를 설정 */
 `;
 
 const Data2 = styled.span`
-    color: #347D6D;
+    color: #347d6d;
     font-family: ${FONTS.PRETENDARD[400]};
     font-size: 0.75rem;
-    white-space: nowrap;  /* 텍스트 줄바꿈을 방지 */
-    overflow: hidden;     /* 넘치는 텍스트를 숨김 */
+    white-space: nowrap; /* 텍스트 줄바꿈을 방지 */
+    overflow: hidden; /* 넘치는 텍스트를 숨김 */
     text-overflow: ellipsis; /* 넘치는 텍스트를 ...으로 표시 */
-    max-width: 130px;     /* 적절한 최대 너비를 설정 */
+    max-width: 130px; /* 적절한 최대 너비를 설정 */
 `;

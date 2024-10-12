@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import temp from '../../../assets/images/tempLost.png';
 import InfoBanner from '../../../components/common/InfoBanner';
 import CustomHeader from '../../../components/layout/CustomHeader';
-import ChartGraph from './ChartGraph';
+import ChartGraph from './components/ChartGraph';
 
 const HelpMungz = () => {
     return (
