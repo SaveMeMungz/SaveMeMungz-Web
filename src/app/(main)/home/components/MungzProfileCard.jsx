@@ -1,34 +1,10 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { fetchMungzProfile } from '../../../../api/home';
 import { FONTS } from '../../../../constants/font';
 
-const MungzProfileCard = ({ subtitle }) => {
-    const [profileData, setProfileData] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const loadProfileData = async () => {
-            setIsLoading(true);
-            try {
-                //console.log('API 호출 시작');
-                const data = await fetchMungzProfile();
-                //console.log('받은 데이터:', data);
-                setProfileData(data);
-            } catch (error) {
-                //console.error('강아지 프로필 로딩 중 오류 발생:', error);
-                setError(error.message || '데이터를 불러오는 데 실패했습니다.');
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        loadProfileData();
-    }, []);
-
+const MungzProfileCard = ({ subtitle, profileData, isLoading, error }) => {
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>에러: {error}</div>;
     if (!profileData) return <div>데이터가 없습니다.</div>;
@@ -41,48 +17,30 @@ const MungzProfileCard = ({ subtitle }) => {
             <RecommendProfileContainer>
                 <ProfilePic src={profileData.image} />
                 <InfoRowContainerWrapper>
-                    <InfoColumnContainer>
-                        <DetailRow>
-                            <Label>지역</Label>
-                            <Data>{profileData.region}</Data>
-                        </DetailRow>
-                        <DetailRow>
-                            <Label>품종</Label>
-                            <Data>{profileData.breed}</Data>
-                        </DetailRow>
-                        <DetailRow>
-                            <Label>성별</Label>
-                            <Data>{profileData.gender}</Data>
-                        </DetailRow>
-                        <DetailRow>
-                            <Label>체중</Label>
-                            <Data>{profileData.weight}</Data>
-                        </DetailRow>
-                    </InfoColumnContainer>
-
-                    <InfoColumnContainer2>
-                        <DetailRow2>
-                            <Label2>보호소명</Label2>
-                            <Data2>{profileData.shelterName}</Data2>
-                        </DetailRow2>
-                        <DetailRow2>
-                            <Label2>연락처</Label2>
-                            <Data2>{profileData.contact}</Data2>
-                        </DetailRow2>
-                        <DetailRow2>
-                            <Label2>중성화</Label2>
-                            <Data2>{profileData.neutered}</Data2>
-                        </DetailRow2>
-                        <DetailRow2>
-                            <Label2>특징</Label2>
-                            <Data2>{profileData.characteristic}</Data2>
-                        </DetailRow2>
-                    </InfoColumnContainer2>
+                    <InfoColumn>
+                        <InfoItem label="지역" data={profileData.region} />
+                        <InfoItem label="품종" data={profileData.breed} />
+                        <InfoItem label="성별" data={profileData.gender} />
+                        <InfoItem label="체중" data={profileData.weight} />
+                    </InfoColumn>
+                    <InfoColumn>
+                        <InfoItem label="보호소명" data={profileData.shelterName} />
+                        <InfoItem label="연락처" data={profileData.contact} />
+                        <InfoItem label="중성화" data={profileData.neutered} />
+                        <InfoItem label="특징" data={profileData.characteristic} />
+                    </InfoColumn>
                 </InfoRowContainerWrapper>
             </RecommendProfileContainer>
         </RecommendationWrapper>
     );
 };
+
+const InfoItem = ({ label, data }) => (
+    <DetailRow>
+        <Label>{label}</Label>
+        <Data>{data}</Data>
+    </DetailRow>
+);
 
 export default MungzProfileCard;
 
@@ -133,19 +91,11 @@ const InfoRowContainerWrapper = styled.div`
     gap: 1.5rem;
 `;
 
-const InfoColumnContainer = styled.div`
+const InfoColumn = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     width: 6rem;
-    flex-shrink: 0;
-`;
-
-const InfoColumnContainer2 = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 10rem;
     flex-shrink: 0;
 `;
 
@@ -154,25 +104,11 @@ const DetailRow = styled.div`
     gap: 0.7rem;
 `;
 
-const DetailRow2 = styled.div`
-    display: flex;
-    gap: 0.2rem;
-`;
-
 const Label = styled.span`
     color: #347d6d;
     font-family: ${FONTS.PRETENDARD[700]};
     font-size: 0.75rem;
     width: 2rem; /* 고정된 너비 */
-    flex-shrink: 0;
-    white-space: nowrap; /* 줄바꿈 방지 */
-`;
-
-const Label2 = styled.span`
-    color: #347d6d;
-    font-family: ${FONTS.PRETENDARD[700]};
-    font-size: 0.75rem;
-    width: 3rem; /* 고정된 너비 */
     flex-shrink: 0;
     white-space: nowrap; /* 줄바꿈 방지 */
 `;
@@ -185,14 +121,4 @@ const Data = styled.span`
     overflow: hidden; /* 넘치는 텍스트를 숨김 */
     text-overflow: ellipsis; /* 넘치는 텍스트를 ...으로 표시 */
     max-width: 100px; /* 적절한 최대 너비를 설정 */
-`;
-
-const Data2 = styled.span`
-    color: #347d6d;
-    font-family: ${FONTS.PRETENDARD[400]};
-    font-size: 0.75rem;
-    white-space: nowrap; /* 텍스트 줄바꿈을 방지 */
-    overflow: hidden; /* 넘치는 텍스트를 숨김 */
-    text-overflow: ellipsis; /* 넘치는 텍스트를 ...으로 표시 */
-    max-width: 130px; /* 적절한 최대 너비를 설정 */
 `;

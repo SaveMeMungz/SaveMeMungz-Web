@@ -1,7 +1,9 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { fetchMungzProfile } from '../../../api/home';
 import CustomButton from '../../../components/common/CustomButton';
 import InfoBanner from '../../../components/common/InfoBanner';
 import SectionDivider from '../../../components/common/SectionDivider';
@@ -12,6 +14,28 @@ import { PADDING_HORIZONTAL, PADDING_VERTICAL } from '../../../constants/space';
 import MungzProfileCard from './components/MungzProfileCard';
 
 const Home = () => {
+    const [profileData, setProfileData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const loadProfileData = async () => {
+            setIsLoading(true);
+            try {
+                //console.log('API 호출 시작');
+                const data = await fetchMungzProfile();
+                //console.log('받은 데이터:', data);
+                setProfileData(data);
+            } catch (error) {
+                //console.error('강아지 프로필 로딩 중 오류 발생:', error);
+                setError(error.message || '데이터를 불러오는 데 실패했습니다.');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadProfileData();
+    }, []);
+
     return (
         <Container>
             <CustomHeader />
@@ -24,7 +48,12 @@ const Home = () => {
                 </ButtonWrapper>
             </ContentContainer>
             <SectionDivider />
-            <MungzProfileCard subtitle="오늘의 추천 멍즈 🐾" />
+            <MungzProfileCard
+                subtitle="오늘의 추천 멍즈 🐾"
+                profileData={profileData}
+                isLoading={isLoading}
+                error={error}
+            />
         </Container>
     );
 };
