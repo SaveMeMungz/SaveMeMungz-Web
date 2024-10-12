@@ -31,20 +31,20 @@ const MbtiMatchComponent = () => {
                     나의 MBTI <Highlighted>{matchData.userMbti}</Highlighted> 와 잘맞는
                 </Title>
                 <Title>
-                    멍BTI는 <Highlighted>{matchData.matchedMbti}</Highlighted> 입니다
+                    멍BTI는 <Highlighted>{matchData.matchMbti}</Highlighted> 입니다
                 </Title>
             </TitleContainer>
 
             <Description>{matchData.description}</Description>
-            <DogsContainer>
-                {matchData.matchedDogs.map((dog, index) => (
-                    <DogProfile key={index}>
-                        <DogImage src={dog.image} alt={dog.name} />
-                    </DogProfile>
+            <MatchResultContainer>
+                {matchData.matchResult.map((mungz, index) => (
+                    <ImageWrapper key={index}>
+                        <MungzImage src={mungz.image} alt={mungz.name} />
+                    </ImageWrapper>
                 ))}
-            </DogsContainer>
+            </MatchResultContainer>
             <RecommendationText>
-                찰떡궁합 멍즈로 {matchData.matchedDogs.map((dog) => dog.name).join('와 ')}를 추천합니다 :)
+                찰떡궁합 멍즈로 {matchData.matchResult.map((mungz) => mungz.name).join('와 ')}를 추천합니다 :)
             </RecommendationText>
         </MatchInfoContainer>
     );
@@ -91,19 +91,19 @@ const Description = styled.div`
     text-align: center;
 `;
 
-const DogsContainer = styled.div`
+const MatchResultContainer = styled.div`
     display: flex;
     flex-direction: row;
     gap: 1rem;
 `;
 
-const DogProfile = styled.div`
+const ImageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
 `;
 
-const DogImage = styled.img`
+const MungzImage = styled.img`
     width: 100px;
     height: 100px;
     object-fit: cover;

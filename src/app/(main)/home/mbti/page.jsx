@@ -9,8 +9,8 @@ import CustomHeader from '../../../../components/layout/CustomHeader';
 import { BUTTON_COLORS } from '../../../../constants/colors';
 /*import { FONTS } from '../../../../constants/font';*/
 import { PADDING_HORIZONTAL, PADDING_VERTICAL } from '../../../../constants/space';
-import DogProfileComponent from '../components/DogProfile';
 import MbtiMatchComponent from '../components/MbtiMatch';
+import MungzProfileCard from '../components/MungzProfileCard';
 
 const MbtiMatch = () => {
     return (
@@ -21,7 +21,7 @@ const MbtiMatch = () => {
                 <MbtiMatchComponent />
             </MbtiMatchContainer>
             <SectionDivider />
-            <DogProfileComponent subtitle="나와 맞는 멍즈를 찾았어요! 🐾" />
+            <MungzProfileCard subtitle="나와 맞는 멍즈를 찾았어요! 🐾" />
             <ContentContainer>
                 <ButtonWrapper>
                     <CustomButton color={BUTTON_COLORS.primary} text="동행 신청하기" route="/home/info" />

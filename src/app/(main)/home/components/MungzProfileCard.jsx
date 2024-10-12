@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { fetchDogProfile } from '../../../../api/home/index';
+import { fetchMungzProfile } from '../../../../api/home';
 import { FONTS } from '../../../../constants/font';
 
-const DogProfileComponent = ({ subtitle }) => {
+const MungzProfileCard = ({ subtitle }) => {
     const [profileData, setProfileData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -16,7 +16,7 @@ const DogProfileComponent = ({ subtitle }) => {
             setIsLoading(true);
             try {
                 //console.log('API 호출 시작');
-                const data = await fetchDogProfile();
+                const data = await fetchMungzProfile();
                 //console.log('받은 데이터:', data);
                 setProfileData(data);
             } catch (error) {
@@ -84,9 +84,7 @@ const DogProfileComponent = ({ subtitle }) => {
     );
 };
 
-export default DogProfileComponent;
-
-// 스타일링 코드는 변경되지 않았으므로 생략
+export default MungzProfileCard;
 
 // 스타일링
 const RecommendationWrapper = styled.div`
