@@ -50,6 +50,7 @@ export default MyPage;
 const Container = styled.div`
     display: flex;
     flex-direction: column;
+    padding-bottom: 2rem;
 `;
 
 const ProfileContainer = styled.div`

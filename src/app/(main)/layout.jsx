@@ -38,5 +38,5 @@ const LayoutWrapper = styled.div`
 
 const MainContent = styled.main`
     flex: 1;
-    padding-bottom: calc(var(--bottom-tab-height) + 2rem);
+    padding-bottom: var(--bottom-tab-height);
 `;
