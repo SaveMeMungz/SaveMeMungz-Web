@@ -1,72 +1,37 @@
 'use client'
 
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { fetchDogProfile } from '../../../api/home/index';
 import { FONTS } from '../../../constants/font';
 
-const DailyDogProfileApi = ( { subtitle } ) => {
+const DogProfileComponent = ({ subtitle }) => {
     const [profileData, setProfileData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const loadProfileData = async () => {
+            setIsLoading(true);
             try {
-                const apiKey = process.env.NEXT_PUBLIC_API_KEY;  // 환경 변수에서 API 키를 가져옴
-                const response = await axios.get('https://openapi.gg.go.kr/AbdmAnimalProtect', {
-                    params: {
-                        Key: apiKey,
-                        Type: 'json',
-                        pIndex: 1,
-                        pSize: 10
-                    }
-                });
-
-                const dogProfiles = response.data.AbdmAnimalProtect[1]?.row.filter(profile => profile.SPECIES_NM.includes('개'));
-                const randomProfile = dogProfiles[Math.floor(Math.random() * dogProfiles.length)];
-
-                setProfileData({
-                    region: extractCity(randomProfile.PROTECT_PLC) || "정보 없음",
-                    shelterName: randomProfile.SHTER_NM || "정보 없음",
-                    breed: randomProfile.SPECIES_NM.replace('[개]', '').trim() || "정보 없음", // Remove [개]
-                    contact: randomProfile.SHTER_TELNO || "정보 없음",
-                    gender: formatGender(randomProfile.SEX_NM),
-                    neutered: formatNeutered(randomProfile.NEUT_YN),
-                    characteristic: formatCharacteristics(randomProfile.SFETR_INFO) || "정보 없음",
-                    weight: randomProfile.BDWGH_INFO || "정보 없음",
-                    image: randomProfile.IMAGE_COURS || '/default-image.png'
-                });
+                //console.log('API 호출 시작');
+                const data = await fetchDogProfile();
+                //console.log('받은 데이터:', data);
+                setProfileData(data);
             } catch (error) {
-                {/*console.error('Error fetching data:', error);*/}
+                //console.error('강아지 프로필 로딩 중 오류 발생:', error);
+                setError(error.message || '데이터를 불러오는 데 실패했습니다.');
+            } finally {
+                setIsLoading(false);
             }
         };
-        fetchData();
+        loadProfileData();
     }, []);
 
-    const formatGender = (gender) => {
-        if (gender === 'F') return '암컷';
-        if (gender === 'M') return '수컷';
-        if (gender === 'Q') return '중성화';
-        return '정보 없음';
-    };
-
-    const formatNeutered = (neutered) => {
-        if (neutered === 'Y') return '완료';
-        if (neutered === 'N') return '미완료';
-        if (neutered === 'U') return '미확인';
-        return '정보 없음';
-    };
-
-    const extractCity = (address) => {
-        const cityRegex = /([가-힣]+(?:시|군|읍))/;
-        const match = address.match(cityRegex);
-        return match ? match[0] : address;
-    };
-
-    const formatCharacteristics = (characteristics) => {
-        const splitChars = characteristics.split(/[,.]/).slice(0, 2); // 쉼표(,)와 온점(.) 기준으로 나눔
-        return splitChars.join(', '); // 쉼표로 다시 합침
-    };
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>에러: {error}</div>;
+    if (!profileData) return <div>데이터가 없습니다.</div>;
 
     return (
         <RecommendationWrapper>
@@ -74,43 +39,43 @@ const DailyDogProfileApi = ( { subtitle } ) => {
                 <TodayRecommendMungz>{subtitle}</TodayRecommendMungz>
             </RecommendTitleRow>
             <RecommendProfileContainer>
-                <ProfilePic src={profileData?.image || '/default-image.png'} />
+                <ProfilePic src={profileData.image} />
                 <InfoRowContainerWrapper>
                     <InfoColumnContainer>
                         <DetailRow>
                             <Label>지역</Label>
-                            <Data>{profileData?.region || "정보 없음"}</Data>
+                            <Data>{profileData.region}</Data>
                         </DetailRow>
                         <DetailRow>
                             <Label>품종</Label>
-                            <Data>{profileData?.breed || "정보 없음"}</Data>
+                            <Data>{profileData.breed}</Data>
                         </DetailRow>
                         <DetailRow>
                             <Label>성별</Label>
-                            <Data>{profileData?.gender || "정보 없음"}</Data>
+                            <Data>{profileData.gender}</Data>
                         </DetailRow>
                         <DetailRow>
                             <Label>체중</Label>
-                            <Data>{profileData?.weight || "정보 없음"}</Data>
+                            <Data>{profileData.weight}</Data>
                         </DetailRow>
                     </InfoColumnContainer>
 
                     <InfoColumnContainer2>
                         <DetailRow2>
                             <Label2>보호소명</Label2>
-                            <Data2>{profileData?.shelterName || "정보 없음"}</Data2>
+                            <Data2>{profileData.shelterName}</Data2>
                         </DetailRow2>
                         <DetailRow2>
                             <Label2>연락처</Label2>
-                            <Data2>{profileData?.contact || "정보 없음"}</Data2>
+                            <Data2>{profileData.contact}</Data2>
                         </DetailRow2>
                         <DetailRow2>
                             <Label2>중성화</Label2>
-                            <Data2>{profileData?.neutered || "정보 없음"}</Data2>
+                            <Data2>{profileData.neutered}</Data2>
                         </DetailRow2>
                         <DetailRow2>
                             <Label2>특징</Label2>
-                            <Data2>{profileData?.characteristic || "정보 없음"}</Data2>
+                            <Data2>{profileData.characteristic}</Data2>
                         </DetailRow2>
                     </InfoColumnContainer2>
                 </InfoRowContainerWrapper>
@@ -119,7 +84,9 @@ const DailyDogProfileApi = ( { subtitle } ) => {
     );
 };
 
-export default DailyDogProfileApi;
+export default DogProfileComponent;
+
+// 스타일링 코드는 변경되지 않았으므로 생략
 
 // 스타일링
 const RecommendationWrapper = styled.div`

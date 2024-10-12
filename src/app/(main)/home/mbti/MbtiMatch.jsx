@@ -1,45 +1,28 @@
 'use client'
 
-import axios from 'axios'; // axios import
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { fetchMbtiMatch } from '../../../../api/home/index';
 import { BACKGROUND_COLORS, TEXT_COLORS } from '../../../../constants/colors';
 import { FONTS } from '../../../../constants/font';
 
-const MbtiMatchApi = () => {
+const MbtiMatchComponent = () => {
     const [matchData, setMatchData] = useState(null);
 
     useEffect(() => {
-        // API에서 데이터를 가져오는 함수
-        const fetchData = async () => {
+        const loadMatchData = async () => {
             try {
-                // 실제 API 호출
-                const response = await axios.get('/api/mbti-match');
-                setMatchData(response.data); // 실제 API 데이터를 설정
+                const data = await fetchMbtiMatch();
+                setMatchData(data);
             } catch (error) {
-                // eslint-disable-next-line no-console
-                console.error('Error fetching data, using mock data:', error);
-
-                // API 호출 실패 시 mock data 사용
-                const mockData = {
-                    userMbti: 'INFJ',
-                    matchedMbti: 'ENFP',
-                    matchedDogs: [
-                        { name: '비숑 프리제', image: 'https://via.placeholder.com/100' },
-                        { name: '웰시 코기', image: 'https://via.placeholder.com/100' }
-                    ],
-                    description: '직관적이고 이타적인 당신과는 창의적이고 열정적인 멍즈가 딱이에요!'
-                };
-
-                setMatchData(mockData); // mock data로 상태 설정
+                //console.error('Error loading MBTI match:', error);
             }
         };
-
-        fetchData(); // useEffect 실행 시 API 데이터 가져오기
+        loadMatchData();
     }, []);
 
-    if (!matchData) return <div>Loading...</div>; // 데이터를 가져오는 동안 로딩 표시
+    if (!matchData) return <div>Loading...</div>;
 
 
 
@@ -64,7 +47,7 @@ const MbtiMatchApi = () => {
     );
 };
 
-export default MbtiMatchApi;
+export default MbtiMatchComponent;
 
 const MatchInfoContainer = styled.div`
     display: flex;
