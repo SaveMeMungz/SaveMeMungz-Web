@@ -4,8 +4,8 @@ import { Select } from 'antd';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import { BACKGROUND_COLORS, TEXT_COLORS } from '../../../constants/colors';
-import { FONTS } from '../../../constants/font';
+import { BACKGROUND_COLORS, TEXT_COLORS } from '../../../../constants/colors';
+import { FONTS } from '../../../../constants/font';
 
 const { Option } = Select;
 

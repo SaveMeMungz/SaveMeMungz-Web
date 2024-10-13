@@ -3,9 +3,9 @@
 import styled from 'styled-components';
 
 import CustomHeader from '../../../components/layout/CustomHeader';
-import FilterBarComponent from './FilterBarComponent';
-import MapView from './MapView';
-import ShelterCardComponent from './ShelterCardComponent';
+import FilterBarComponent from './components/FilterBarComponent';
+import MapView from './components/MapView';
+import ShelterCardComponent from './components/ShelterCardComponent';
 
 const Course = () => {
     return (

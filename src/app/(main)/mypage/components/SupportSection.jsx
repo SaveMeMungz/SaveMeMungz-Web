@@ -3,12 +3,12 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import chatIcon from '../../../assets/icons/chat-icon.png';
-import supportIcon from '../../../assets/icons/support-icon.png';
-import vectorIcon from '../../../assets/icons/vector-icon.png';
-import { BACKGROUND_COLORS, TEXT_COLORS } from '../../../constants/colors';
-import { FONTS } from '../../../constants/font';
-import { PADDING_HORIZONTAL } from '../../../constants/space';
+import chatIcon from '../../../../assets/icons/chat-icon.png';
+import supportIcon from '../../../../assets/icons/support-icon.png';
+import vectorIcon from '../../../../assets/icons/vector-icon.png';
+import { BACKGROUND_COLORS, TEXT_COLORS } from '../../../../constants/colors';
+import { FONTS } from '../../../../constants/font';
+import { PADDING_HORIZONTAL } from '../../../../constants/space';
 
 const SupportSection = () => {
     return (
