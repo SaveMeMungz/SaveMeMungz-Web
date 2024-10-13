@@ -18,6 +18,10 @@ const InfoMatch = () => {
     const [error, setError] = useState(null);
     const tags = ['용인시', '소형견', '성별:암컷', '중성화완료'];
 
+    const handleClick = () => {
+        alert('준비중인 기능입니다!');
+    };
+
     // 추후에 정보 매칭 api로 수정
     useEffect(() => {
         const loadProfileData = async () => {
@@ -36,7 +40,7 @@ const InfoMatch = () => {
 
     return (
         <Container>
-            <CustomHeader title="정보 기반 매칭" showBackBtn={true} />
+            <CustomHeader onClck title="정보 기반 매칭" showBackBtn={true} />
             <InfoBanner message="동행자님의 입력 정보에 맞는 멍즈를 찾았어요! 🐶" />
             {/* 정보 태그 */}
             <TagWrapper>
@@ -56,8 +60,18 @@ const InfoMatch = () => {
             {/* 버튼 영역 */}
             <ContentContainer>
                 <ButtonWrapper>
-                    <CustomButton color={BUTTON_COLORS.primary} text="동행 신청하기" route="/home/info" />
-                    <CustomButton color={BUTTON_COLORS.secondary} text="보호소로 문의하기" route="/home/mbti" />
+                    <CustomButton
+                        onClick={handleClick}
+                        color={BUTTON_COLORS.primary}
+                        text="동행 신청하기"
+                        route="/home/info"
+                    />
+                    <CustomButton
+                        onClick={handleClick}
+                        color={BUTTON_COLORS.secondary}
+                        text="보호소로 문의하기"
+                        route="/home/mbti"
+                    />
                 </ButtonWrapper>
             </ContentContainer>
         </Container>

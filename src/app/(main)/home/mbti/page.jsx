@@ -18,6 +18,10 @@ const MbtiMatch = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const handleClick = () => {
+        alert('준비중인 기능입니다!');
+    };
+
     // 추후에 mbti 매칭 api로 수정
     useEffect(() => {
         const loadProfileData = async () => {
@@ -55,8 +59,18 @@ const MbtiMatch = () => {
             {/* 버튼 영역 */}
             <ContentContainer>
                 <ButtonWrapper>
-                    <CustomButton color={BUTTON_COLORS.primary} text="동행 신청하기" route="/home/info" />
-                    <CustomButton color={BUTTON_COLORS.secondary} text="보호소로 문의하기" route="/home/mbti" />
+                    <CustomButton
+                        onClick={handleClick}
+                        color={BUTTON_COLORS.primary}
+                        text="동행 신청하기"
+                        route="/home/info"
+                    />
+                    <CustomButton
+                        onClick={handleClick}
+                        color={BUTTON_COLORS.secondary}
+                        text="보호소로 문의하기"
+                        route="/home/mbti"
+                    />
                 </ButtonWrapper>
             </ContentContainer>
         </Container>
