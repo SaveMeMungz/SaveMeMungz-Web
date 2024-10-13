@@ -10,7 +10,7 @@ import SectionDivider from '../../../../components/common/SectionDivider';
 import CustomHeader from '../../../../components/layout/CustomHeader';
 import { BUTTON_COLORS } from '../../../../constants/colors';
 import { PADDING_HORIZONTAL, PADDING_VERTICAL } from '../../../../constants/space';
-import MbtiMatchComponent from '../components/MbtiMatch';
+import MbtiMatchComponent from '../components/MbtiMatchComponent';
 import MungzProfileCard from '../components/MungzProfileCard';
 
 const MbtiMatch = () => {
@@ -38,10 +38,12 @@ const MbtiMatch = () => {
         <Container>
             <CustomHeader title="MBTI 매칭" showBackBtn={true} />
             <InfoBanner message="나와 멍BTI가 맞는 찰떡궁합 멍즈를 찾았어요! 🐶" />
+            {/* mbti 매칭 결과 */}
             <MbtiMatchContainer>
                 <MbtiMatchComponent />
             </MbtiMatchContainer>
             <SectionDivider />
+            {/* 멍즈 카드 */}
             <ContentContainer>
                 <MungzProfileCard
                     subtitle="나와 맞는 멍즈를 찾았어요! 🐾"
@@ -50,6 +52,7 @@ const MbtiMatch = () => {
                     error={error}
                 />
             </ContentContainer>
+            {/* 버튼 영역 */}
             <ContentContainer>
                 <ButtonWrapper>
                     <CustomButton color={BUTTON_COLORS.primary} text="동행 신청하기" route="/home/info" />

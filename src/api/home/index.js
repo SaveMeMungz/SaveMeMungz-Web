@@ -52,7 +52,7 @@ export const fetchMbtiMatch = async () => {
                 { name: '비숑 프리제', image: 'https://via.placeholder.com/100' },
                 { name: '웰시 코기', image: 'https://via.placeholder.com/100' },
             ],
-            description: '직관적이고 이타적인 당신과는 창의적이고 열정적인 멍즈가 딱이에요!',
+            description: '직관적이고 이타적인 당신과는\n창의적이고 열정적인 멍즈가 딱이에요!',
         };
     }
 };
