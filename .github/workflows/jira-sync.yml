@@ -1,0 +1,38 @@
+name: Create Jira issue
+on:
+  issues:
+    types: [opened]
+    
+jobs:
+  create-issue:
+    name: Create Jira issue
+    runs-on: ubuntu-latest
+    steps:
+    - name: Login
+      uses: atlassian/gajira-login@v3
+      env:
+        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+    
+    - name: Process Issue Body
+      id: process_body
+      run: |
+        BODY=$(echo '${{ github.event.issue.body }}' | perl -0pe 's/<!--[\s\S]*?-->//g' | sed 's/^## 💥 이슈 설명/h2. 💥 이슈 설명/g' | sed 's/^## 📚 TO-DO/h2. 📚 TO-DO/g' | sed 's/^## 👀 참고 사항/h2. 👀 참고 사항/g' | sed 's/^- \[ \] /* /g' | sed 's/^  - \[ \] /** /g' | sed 's/^    - \[ \] /*** /g')
+        echo "processed_body<<EOF" >> $GITHUB_OUTPUT
+        echo "$BODY" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
+    - name: Create Issue 
+      uses: atlassian/gajira-create@v3
+      with:
+        project: ISSUE
+        issuetype: Task
+        summary: '${{ github.event.issue.title }}'
+        description: |
+          h2. 이슈 상세 정보
+          * GitHub Issue URL: ${{ github.event.issue.html_url }}
+          * 생성자: ${{ github.event.issue.user.login }}
+          * 라벨: ${{ join(github.event.issue.labels.*.name, ', ') }}
+
+          ${{ steps.process_body.outputs.processed_body }}

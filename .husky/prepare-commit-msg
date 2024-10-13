@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+ISSUE_KEY=$(echo $BRANCH_NAME | grep -oE '^ISSUE-[0-9]+')
+
+if [ -n "$ISSUE_KEY" ]; then
+  sed -i.bak -e "1s/^/[$ISSUE_KEY] /" "$1"
+fi
