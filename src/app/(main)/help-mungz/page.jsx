@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import temp from '../../../assets/images/tempLost.png';
+import temp from '../../../assets/images/temp/tempLost.png';
 import InfoBanner from '../../../components/common/InfoBanner';
 import CustomHeader from '../../../components/layout/CustomHeader';
 import ChartGraph from './components/ChartGraph';

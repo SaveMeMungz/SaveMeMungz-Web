@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import bookmarkIcon from '../../../../assets/icons/bookmark-icon.png';
 import callIcon from '../../../../assets/icons/call-icon.png';
 import shareIcon from '../../../../assets/icons/share-post.png';
-import shelterImg from '../../../../assets/images/tempShelter.png';
+import shelterImg from '../../../../assets/images/temp/tempShelter.png';
 import { TEXT_COLORS } from '../../../../constants/colors';
 import { FONTS } from '../../../../constants/font';
 import { PADDING_HORIZONTAL } from '../../../../constants/space';
