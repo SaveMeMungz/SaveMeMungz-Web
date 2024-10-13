@@ -35,10 +35,10 @@ const MbtiMatchComponent = () => {
                 <SparkleImage src={sparkleImg} width={32} height={32} />
                 <ResultWrapper>
                     <Result>
-                        나의 MBTI &nbsp;<Highlighted> {matchData.userMbti}</Highlighted>&nbsp; 와 잘맞는
+                        나의 MBTI &nbsp;<Highlighted>&nbsp;{matchData.userMbti}&nbsp;</Highlighted>&nbsp; 와 잘맞는
                     </Result>
                     <Result>
-                        멍BTI는 &nbsp;<Highlighted>{matchData.matchMbti}</Highlighted>&nbsp; 입니다
+                        멍BTI는 &nbsp;<Highlighted>&nbsp;{matchData.matchMbti}&nbsp;</Highlighted>&nbsp; 입니다
                     </Result>
                 </ResultWrapper>
                 <SparkleImage src={sparkleImg} width={32} height={32} />
