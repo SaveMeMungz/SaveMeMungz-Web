@@ -16,11 +16,20 @@ jobs:
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
         JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
 
+    - name: Debug Info Before Search
+      run: |
+        echo "GitHub Issue Title: ${{ github.event.issue.title }}"
+        echo "GitHub Issue URL: ${{ github.event.issue.html_url }}"
+
     - name: Search for Jira Issue
       id: search
-      uses: atlassian/gajira-search@v3
+      uses: atlassian/gajira-find-issue-key@v3
       with:
-        jql: "project = ISSUE AND summary ~ '${{ github.event.issue.title }}' AND description ~ '${{ github.event.issue.html_url }}'"
+        string: ${{ github.event.issue.title }}
+
+    - name: Debug Info After Search
+      run: |
+        echo "Jira Search Result: ${{ steps.search.outputs.issue }}"
 
     - name: Transition Jira Issue
       if: steps.search.outputs.issue != ''
