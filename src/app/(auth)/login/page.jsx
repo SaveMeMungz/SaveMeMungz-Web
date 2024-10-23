@@ -145,6 +145,7 @@ const AutoLoginRadioButton = styled.input`
 `;
 
 const AutoLoginMessage = styled.span`
+    font-family: ${FONTS.PRETENDARD[400]};
     color: ${TEXT_COLORS.black};
     font-size: 0.875rem;
 `;

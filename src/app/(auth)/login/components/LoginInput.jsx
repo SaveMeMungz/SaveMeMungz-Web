@@ -47,11 +47,10 @@ const InputWrapper = styled.div`
 `;
 
 const StyledInput = styled.input`
-    flex-grow: 1;
     background-color: ${COLORS.softMint};
     border: none;
     font-family: ${FONTS.PRETENDARD[400]};
-    font-size: 1rem;
+    font-size: 0.875rem;
     color: ${TEXT_COLORS.default};
 
     &::placeholder {
