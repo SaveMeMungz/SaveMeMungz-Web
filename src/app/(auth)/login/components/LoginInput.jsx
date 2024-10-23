@@ -1,6 +1,6 @@
 'use client';
 
-import { FaLock, FaUserAlt } from 'react-icons/fa';
+import { LockOutlined, UserOutlined } from '@ant-design/icons'; // 아이콘 추가
 import styled from 'styled-components';
 
 import { COLORS, TEXT_COLORS } from '../../../../constants/colors';
@@ -17,7 +17,7 @@ const LoginInput = ({
 }) => {
     return (
         <InputWrapper>
-            <IconWrapper>{type === 'id' ? <FaUserAlt /> : <FaLock />}</IconWrapper>
+            <IconWrapper>{type === 'id' ? <UserOutlined /> : <LockOutlined />}</IconWrapper>
             <Divider /> {/* 세로 줄 추가 */}
             <StyledInput
                 type={type === 'password' && !passwordVisible ? 'password' : 'text'}
