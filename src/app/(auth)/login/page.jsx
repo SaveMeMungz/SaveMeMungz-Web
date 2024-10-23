@@ -195,6 +195,7 @@ const EasyLoginLineContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin-top: 1rem;
 `;
 
 const EasyLoginLine = styled.div`
@@ -213,6 +214,8 @@ const EasyLogin = styled.div`
 const SocialLoginIcons = styled.div`
     display: flex;
     justify-content: center;
+    margin-top: 0.5rem;
+    gap: 0.5rem;
 `;
 
 const LoginIconWrapper = styled.div`

@@ -110,9 +110,10 @@ export default SignUp;
 
 const Container = styled.div`
     background-color: ${BACKGROUND_COLORS.default};
+    min-height: 100vh; /* 화면 전체 높이를 채움 */
     display: flex;
     flex-direction: column;
-    padding-top: 4rem;
+    justify-content: center;
     padding-bottom: 2rem;
     gap: 2rem;
 `;
@@ -120,6 +121,7 @@ const Container = styled.div`
 const WhitePawWrapper = styled.div`
     display: flex;
     justify-content: center;
+    padding-bottom: 2rem;
 `;
 
 const SignUpTitle = styled.div`
