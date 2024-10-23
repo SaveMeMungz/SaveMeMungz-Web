@@ -8,11 +8,11 @@ import googleLogin from '../../../assets/images/google.png';
 import kakaoLogin from '../../../assets/images/kakao.png';
 import logoImg from '../../../assets/images/logo.png';
 import symbolImg from '../../../assets/images/symbol.png';
-import AuthInput from '../../../components/common/AuthInput';
 import CustomButton from '../../../components/common/CustomButton';
 import { BACKGROUND_COLORS, BUTTON_COLORS, COLORS, TEXT_COLORS } from '../../../constants/colors';
 import { FONTS } from '../../../constants/font';
 import { PADDING_HORIZONTAL, PADDING_VERTICAL } from '../../../constants/space';
+import LoginInput from './components/LoginInput';
 
 const Login = () => {
     const [id, setId] = useState('');
@@ -39,9 +39,9 @@ const Login = () => {
 
             <ContentContainer>
                 <LoginInputContainer>
-                    <AuthInput name="id" type="id" value={id} placeholder="아이디" onChange={handleIdChange} />
+                    <LoginInput name="id" type="id" value={id} placeholder="아이디" onChange={handleIdChange} />
 
-                    <AuthInput
+                    <LoginInput
                         name="password"
                         type="password"
                         value={password}

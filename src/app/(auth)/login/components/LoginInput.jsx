@@ -3,10 +3,10 @@
 import { FaLock, FaUserAlt } from 'react-icons/fa';
 import styled from 'styled-components';
 
-import { COLORS, TEXT_COLORS } from '../../constants/colors';
-import { FONTS } from '../../constants/font';
+import { COLORS, TEXT_COLORS } from '../../../../constants/colors';
+import { FONTS } from '../../../../constants/font';
 
-const CustomInput = ({
+const LoginInput = ({
     name,
     value,
     type = 'text',
@@ -33,7 +33,7 @@ const CustomInput = ({
     );
 };
 
-export default CustomInput;
+export default LoginInput;
 
 const InputWrapper = styled.div`
     width: 100%;
