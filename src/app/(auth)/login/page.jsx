@@ -96,6 +96,12 @@ export default Login;
 const Container = styled.div`
     background-color: ${BACKGROUND_COLORS.default};
     padding-bottom: 2rem;
+    min-height: 100vh; /* 화면 전체 높이를 채움 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 세로 중앙 정렬 */
+    align-items: center; /* 가로 중앙 정렬 */
+    position: relative;
 `;
 
 const LogoContainerColumn = styled.div`
@@ -106,11 +112,9 @@ const LogoContainerColumn = styled.div`
 `;
 
 const QuestionWrapper = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 0.5rem;
-    padding-right: 0.5rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
 `;
 
 const SymbolWrapper = styled.div`
