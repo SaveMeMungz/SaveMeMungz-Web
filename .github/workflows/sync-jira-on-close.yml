@@ -37,7 +37,7 @@ jobs:
       uses: atlassian/gajira-transition@v3
       with:
         issue: ${{ steps.extract.outputs.result }}
-        transition: "Done"
+        transition: "완료"
 
     - name: Comment on Jira Issue
       if: steps.extract.outputs.result != ''
