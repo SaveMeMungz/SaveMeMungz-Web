@@ -1,15 +1,15 @@
 'use client';
 
-import Image from 'next/image'; // next/image import
+import Image from 'next/image';
 import React, { useState } from 'react';
-import { FaLock, FaUserAlt } from 'react-icons/fa';
 import styled from 'styled-components';
 
 import logoImg from '../../../assets/images/logo.png';
-import symbolImg from '../../../assets/images/symbol.png'; // 경로는 이미지 확장자 포함
+import symbolImg from '../../../assets/images/symbol.png';
+import AuthInput from '../../../components/common/AuthInput';
 import CustomButton from '../../../components/common/CustomButton';
-import CustomInput from '../../../components/common/CustomInput';
-import { BUTTON_COLORS } from '../../../constants/colors';
+import { BACKGROUND_COLORS, BUTTON_COLORS, TEXT_COLORS } from '../../../constants/colors';
+import { PADDING_HORIZONTAL, PADDING_VERTICAL } from '../../../constants/space';
 
 const Login = () => {
     const [id, setId] = useState('');
@@ -19,64 +19,86 @@ const Login = () => {
     const handleIdChange = (e) => setId(e.target.value);
     const handlePwChange = (e) => setPassword(e.target.value);
 
-    const togglePasswordVisibility = () => {
-        setPasswordVisible(!passwordVisible);
-    };
+    const togglePasswordVisibility = () => setPasswordVisible(!passwordVisible);
 
     return (
-        <>
+        <Container>
             <LogoContainerColumn>
-                <Image src={symbolImg} alt="Symbol" width={50} height={50} /> {/* Symbol */}
-                <Image src={logoImg} alt="Logo" width={100} height={100} /> {/* Logo */}
+                <SymbolWrapper>
+                    <Image src={symbolImg} alt="Symbol" layout="fill" objectFit="contain" />
+                </SymbolWrapper>
+                <LogoWrapper>
+                    <Image src={logoImg} alt="Logo" layout="fill" objectFit="contain" />
+                </LogoWrapper>
+
                 <Letter>함께하는 따뜻한 동행 🐾</Letter>
             </LogoContainerColumn>
 
-            <LoginInputContainer>
-                <InputWrapper>
-                    <IconWrapper>
-                        <FaUserAlt />
-                    </IconWrapper>
-                    <CustomInput name="id" value={id} placeholder="아이디 입력" onChange={handleIdChange} />
-                </InputWrapper>
+            <ContentContainer>
+                <LoginInputContainer>
+                    <AuthInput name="id" type="id" value={id} placeholder="아이디" onChange={handleIdChange} />
 
-                <InputWrapper>
-                    <IconWrapper>
-                        <FaLock />
-                    </IconWrapper>
-                    <CustomInput
+                    <AuthInput
                         name="password"
-                        type={passwordVisible ? 'text' : 'password'}
+                        type="password"
                         value={password}
                         placeholder="비밀번호"
+                        passwordVisible={passwordVisible}
+                        togglePasswordVisibility={togglePasswordVisibility}
                         onChange={handlePwChange}
                     />
-                    <ShowButton onClick={togglePasswordVisibility}>{passwordVisible ? 'Hide' : 'Show'}</ShowButton>
-                </InputWrapper>
 
-                <AutoLoginContainerRow>
-                    <AutoLoginRadioButton type="checkbox" /> {/* Checkbox 추가 */}
-                    <AutoLoginMessage>자동 로그인</AutoLoginMessage>
-                </AutoLoginContainerRow>
-            </LoginInputContainer>
+                    <AutoLoginContainerRow>
+                        <AutoLoginRadioButton type="checkbox" />
+                        <AutoLoginMessage>자동 로그인</AutoLoginMessage>
+                    </AutoLoginContainerRow>
+                </LoginInputContainer>
 
-            <SignInUpButtonContainerColumn>
-                <CustomButton color={BUTTON_COLORS.accent} text="정보 기반 매칭" route="/home/info" />
-                <CustomButton color={BUTTON_COLORS.secondary} text="MBTI 매칭" route="/home/mbti" />
-            </SignInUpButtonContainerColumn>
-        </>
+                <SignInUpButtonContainerColumn>
+                    <CustomButton color={BUTTON_COLORS.primary} text="로그인" route="/onboarding" />
+                    <CustomButton color={BUTTON_COLORS.secondary} text="회원가입" route="/sign-up" />
+                </SignInUpButtonContainerColumn>
+            </ContentContainer>
+        </Container>
     );
 };
 
 export default Login;
 
+const Container = styled.div`
+    background-color: ${BACKGROUND_COLORS.default};
+`;
+
 const LogoContainerColumn = styled.div`
-    text-align: center;
-    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const SymbolWrapper = styled.div`
+    width: 9.375rem;
+    height: 8.27344rem;
+    position: relative;
+`;
+
+const LogoWrapper = styled.div`
+    width: 11.25rem;
+    height: 2.67938rem;
+    position: relative;
 `;
 
 const Letter = styled.div`
-    font-size: 1.2rem;
-    color: #555;
+    font-size: 1rem;
+    color: ${TEXT_COLORS.default};
+    font-family: Pretendard, sans-serif;
+`;
+
+const ContentContainer = styled.div`
+    ${PADDING_HORIZONTAL}
+    ${PADDING_VERTICAL}
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 `;
 
 const LoginInputContainer = styled.div`
@@ -85,43 +107,21 @@ const LoginInputContainer = styled.div`
     gap: 1rem;
 `;
 
-const InputWrapper = styled.div`
-    position: relative;
-    display: flex;
-    align-items: center;
-    background-color: #e0f2f1;
-    border-radius: 0.5rem;
-    padding: 0.75rem;
-`;
-
-const IconWrapper = styled.div`
-    padding-right: 1rem;
-    color: #80cbc4;
-`;
-
-const ShowButton = styled.button`
-    position: absolute;
-    right: 10px;
-    background: none;
-    border: none;
-    color: #80cbc4;
-    cursor: pointer;
-
-    &:focus {
-        outline: none;
-    }
-`;
-
 const AutoLoginContainerRow = styled.div`
     display: flex;
     align-items: center;
     gap: 0.5rem;
 `;
 
-const AutoLoginRadioButton = styled.input``;
+const AutoLoginRadioButton = styled.input`
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+`;
 
 const AutoLoginMessage = styled.span`
-    color: #546e7a;
+    color: ${TEXT_COLORS.default};
 `;
 
 const SignInUpButtonContainerColumn = styled.div`
