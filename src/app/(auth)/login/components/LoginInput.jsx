@@ -85,6 +85,7 @@ const ShowButton = styled.button`
     font-size: 0.875rem;
     position: absolute;
     right: 10px;
+    text-decoration: underline; /* 밑줄 추가 */
 
     &:focus {
         outline: none;
