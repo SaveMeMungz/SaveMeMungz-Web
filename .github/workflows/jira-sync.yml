@@ -24,6 +24,7 @@ jobs:
         echo "EOF" >> $GITHUB_OUTPUT
 
     - name: Create Issue 
+      id: create
       uses: atlassian/gajira-create@v3
       with:
         project: ISSUE
@@ -33,6 +34,20 @@ jobs:
           h2. 이슈 상세 정보
           * GitHub Issue URL: ${{ github.event.issue.html_url }}
           * 생성자: ${{ github.event.issue.user.login }}
-          * 라벨: ${{ join(github.event.issue.labels.*.name, ', ') }}
 
           ${{ steps.process_body.outputs.processed_body }}
+
+    - name: Update GitHub Issue Body
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const issueNumber = context.issue.number;
+          const jiraKey = '${{ steps.create.outputs.issue }}';
+          const currentBody = context.payload.issue.body;
+          const updatedBody = `🔑 Jira Issue: ${jiraKey}\n\n${currentBody}`;
+          await github.rest.issues.update({
+            owner: context.repo.owner,
+            repo: context.repo.name,
+            issue_number: issueNumber,
+            body: updatedBody
+          });
