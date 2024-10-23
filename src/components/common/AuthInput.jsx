@@ -18,6 +18,7 @@ const CustomInput = ({
     return (
         <InputWrapper>
             <IconWrapper>{type === 'id' ? <FaUserAlt /> : <FaLock />}</IconWrapper>
+            <Divider /> {/* 세로 줄 추가 */}
             <StyledInput
                 type={type === 'password' && !passwordVisible ? 'password' : 'text'}
                 name={name}
@@ -66,6 +67,13 @@ const StyledInput = styled.input`
 const IconWrapper = styled.div`
     padding-right: 0.5rem;
     color: ${COLORS.primary};
+`;
+
+const Divider = styled.div`
+    width: 0.0625rem; /* 1px */
+    height: 100%;
+    background-color: ${COLORS.mint}; /* 옅은 세로줄 색상 */
+    margin-right: 0.5rem; /* 세로 줄과 입력 필드 사이의 간격 */
 `;
 
 const ShowButton = styled.button`

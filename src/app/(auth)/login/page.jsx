@@ -4,6 +4,8 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import googleLogin from '../../../assets/images/google.png';
+import kakaoLogin from '../../../assets/images/kakao.png';
 import logoImg from '../../../assets/images/logo.png';
 import symbolImg from '../../../assets/images/symbol.png';
 import AuthInput from '../../../components/common/AuthInput';
@@ -58,6 +60,23 @@ const Login = () => {
                     <CustomButton color={BUTTON_COLORS.primary} text="로그인" route="/onboarding" />
                     <CustomButton color={BUTTON_COLORS.secondary} text="회원가입" route="/sign-up" />
                 </SignInUpButtonContainerColumn>
+
+                <FindIdPw>아이디•비밀번호 찾기</FindIdPw>
+
+                <EasyLoginLineContainer>
+                    <EasyLoginLine />
+                    <EasyLogin>간편 로그인</EasyLogin>
+                    <EasyLoginLine />
+                </EasyLoginLineContainer>
+
+                <SocialLoginIcons>
+                    <LoginIconWrapper>
+                        <Image src={kakaoLogin} alt="Kakao Login" width={50} height={50} />
+                    </LoginIconWrapper>
+                    <LoginIconWrapper>
+                        <Image src={googleLogin} alt="Google Login" width={50} height={50} />
+                    </LoginIconWrapper>
+                </SocialLoginIcons>
             </ContentContainer>
         </Container>
     );
@@ -129,4 +148,56 @@ const SignInUpButtonContainerColumn = styled.div`
     flex-direction: column;
     gap: 1rem;
     margin-top: 2rem;
+`;
+
+const FindIdPw = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: #1f5a6e;
+    font-family: 'Noto Sans KR';
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+`;
+
+const EasyLoginLineContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`;
+
+const EasyLoginLine = styled.div`
+    width: 8.125rem;
+    height: 0.0625rem;
+    background: #e0e0e0;
+`;
+
+const EasyLogin = styled.div`
+    color: #a5a5a5;
+    text-align: center;
+    font-family: 'Noto Sans KR';
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.3125rem; /* 150% */
+    letter-spacing: -0.02rem;
+`;
+
+const SocialLoginIcons = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+`;
+
+const LoginIconWrapper = styled.div`
+    width: 3.125rem;
+    height: 3.125rem;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
