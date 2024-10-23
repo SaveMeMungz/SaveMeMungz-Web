@@ -16,35 +16,33 @@ jobs:
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
         JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
 
-    - name: Debug Info Before Search
-      run: |
-        echo "GitHub Issue Title: ${{ github.event.issue.title }}"
-        echo "GitHub Issue URL: ${{ github.event.issue.html_url }}"
-
-    - name: Search for Jira Issue
-      id: search
-      uses: atlassian/gajira-find-issue-key@v3
+    - name: Extract Jira Key
+      id: extract
+      uses: actions/github-script@v6
       with:
-        string: ${{ github.event.issue.title }}
-
-    - name: Debug Info After Search
-      run: |
-        echo "Jira Search Result: ${{ steps.search.outputs.issue }}"
+        script: |
+          const body = context.payload.issue.body;
+          const match = body.match(/🔑 Jira Issue: ([A-Z]+-[0-9]+)/);
+          if (match) {
+            return match[1];
+          }
+          return '';
+        result-encoding: string
 
     - name: Transition Jira Issue
-      if: steps.search.outputs.issue != ''
+      if: steps.extract.outputs.result != ''
       uses: atlassian/gajira-transition@v3
       with:
-        issue: ${{ steps.search.outputs.issue }}
+        issue: ${{ steps.extract.outputs.result }}
         transition: "Done"
 
     - name: Comment on Jira Issue
-      if: steps.search.outputs.issue != ''
+      if: steps.extract.outputs.result != ''
       uses: atlassian/gajira-comment@v3
       with:
-        issue: ${{ steps.search.outputs.issue }}
+        issue: ${{ steps.extract.outputs.result }}
         comment: "Issue Closed: ${{ github.event.issue.html_url }}"
 
     - name: Log if no Jira issue found
-      if: steps.search.outputs.issue == ''
-      run: echo "No matching Jira issue found for GitHub issue ${{ github.event.issue.number }}"
+      if: steps.extract.outputs.result == ''
+      run: echo "No Jira issue key found in GitHub issue body"
