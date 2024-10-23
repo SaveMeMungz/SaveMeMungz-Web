@@ -1,6 +1,6 @@
 'use client';
 
-import { LockOutlined, UserOutlined } from '@ant-design/icons'; // 아이콘 추가
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 
 import { COLORS, TEXT_COLORS } from '../../../../constants/colors';
@@ -18,7 +18,7 @@ const LoginInput = ({
     return (
         <InputWrapper>
             <IconWrapper>{type === 'id' ? <UserOutlined /> : <LockOutlined />}</IconWrapper>
-            <Divider /> {/* 세로 줄 추가 */}
+            <Divider />
             <StyledInput
                 type={type === 'password' && !passwordVisible ? 'password' : 'text'}
                 name={name}
@@ -69,9 +69,9 @@ const IconWrapper = styled.div`
 `;
 
 const Divider = styled.div`
-    width: 0.0625rem; /* 1px */
+    width: 0.0625rem;
     height: 100%;
-    background-color: ${COLORS.mint}; /* 옅은 세로줄 색상 */
+    background-color: ${COLORS.mint};
     margin-right: 0.5rem; /* 세로 줄과 입력 필드 사이의 간격 */
 `;
 
@@ -84,7 +84,7 @@ const ShowButton = styled.button`
     font-size: 0.875rem;
     position: absolute;
     right: 10px;
-    text-decoration: underline; /* 밑줄 추가 */
+    text-decoration: underline;
 
     &:focus {
         outline: none;

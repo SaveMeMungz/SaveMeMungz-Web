@@ -1,5 +1,6 @@
 'use client';
 
+import { Checkbox } from 'antd'; // Ant Design Checkbox import
 import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -18,11 +19,12 @@ const Login = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [autoLogin, setAutoLogin] = useState(false);
 
     const handleIdChange = (e) => setId(e.target.value);
     const handlePwChange = (e) => setPassword(e.target.value);
-
     const togglePasswordVisibility = () => setPasswordVisible(!passwordVisible);
+    const handleAutoLoginChange = (e) => setAutoLogin(e.target.checked);
 
     return (
         <Container>
@@ -52,8 +54,9 @@ const Login = () => {
                     />
 
                     <AutoLoginContainerRow>
-                        <AutoLoginRadioButton type="checkbox" />
-                        <AutoLoginMessage>자동 로그인</AutoLoginMessage>
+                        <StyledCheckbox checked={autoLogin} onChange={handleAutoLoginChange}>
+                            자동 로그인
+                        </StyledCheckbox>
                     </AutoLoginContainerRow>
                 </LoginInputContainer>
 
@@ -137,17 +140,20 @@ const AutoLoginContainerRow = styled.div`
     gap: 0.5rem;
 `;
 
-const AutoLoginRadioButton = styled.input`
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    cursor: pointer;
-`;
-
-const AutoLoginMessage = styled.span`
-    font-family: ${FONTS.PRETENDARD[400]};
-    color: ${TEXT_COLORS.black};
-    font-size: 0.875rem;
+const StyledCheckbox = styled(Checkbox)`
+    .ant-checkbox-inner {
+        border-radius: 50%; /* 원형 체크박스 */
+        border-color: ${COLORS.primary}; /* 체크박스 테두리 색상 */
+    }
+    .ant-checkbox-checked .ant-checkbox-inner {
+        background-color: ${COLORS.primary}; /* 체크된 상태에서 배경색 */
+        border-color: ${COLORS.primary}; /* 체크된 상태에서 테두리 색상 */
+    }
+    span {
+        font-family: ${FONTS.PRETENDARD[400]};
+        font-size: 0.875rem;
+        color: ${TEXT_COLORS.black};
+    }
 `;
 
 const SignInUpButtonContainerColumn = styled.div`
