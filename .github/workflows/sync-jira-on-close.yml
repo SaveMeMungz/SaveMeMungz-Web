@@ -4,6 +4,9 @@ on:
   issues:
     types: [closed]
 
+permissions:
+  issues: read
+
 jobs:
   sync-jira:
     name: Sync Jira Issue
