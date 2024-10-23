@@ -10,7 +10,8 @@ import logoImg from '../../../assets/images/logo.png';
 import symbolImg from '../../../assets/images/symbol.png';
 import AuthInput from '../../../components/common/AuthInput';
 import CustomButton from '../../../components/common/CustomButton';
-import { BACKGROUND_COLORS, BUTTON_COLORS, TEXT_COLORS } from '../../../constants/colors';
+import { BACKGROUND_COLORS, BUTTON_COLORS, COLORS, TEXT_COLORS } from '../../../constants/colors';
+import { FONTS } from '../../../constants/font';
 import { PADDING_HORIZONTAL, PADDING_VERTICAL } from '../../../constants/space';
 
 const Login = () => {
@@ -86,12 +87,15 @@ export default Login;
 
 const Container = styled.div`
     background-color: ${BACKGROUND_COLORS.default};
+    padding-top: 4rem;
+    padding-bottom: 2rem;
 `;
 
 const LogoContainerColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0.7rem;
 `;
 
 const SymbolWrapper = styled.div`
@@ -109,7 +113,7 @@ const LogoWrapper = styled.div`
 const Letter = styled.div`
     font-size: 1rem;
     color: ${TEXT_COLORS.default};
-    font-family: Pretendard, sans-serif;
+    font-family: ${FONTS.PRETENDARD[400]};
 `;
 
 const ContentContainer = styled.div`
@@ -117,13 +121,13 @@ const ContentContainer = styled.div`
     ${PADDING_VERTICAL}
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
 `;
 
 const LoginInputContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
 `;
 
 const AutoLoginContainerRow = styled.div`
@@ -140,13 +144,14 @@ const AutoLoginRadioButton = styled.input`
 `;
 
 const AutoLoginMessage = styled.span`
-    color: ${TEXT_COLORS.default};
+    color: ${TEXT_COLORS.black};
+    font-size: 0.875rem;
 `;
 
 const SignInUpButtonContainerColumn = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-top: 2rem;
 `;
 
@@ -154,43 +159,36 @@ const FindIdPw = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
-    color: #1f5a6e;
-    font-family: 'Noto Sans KR';
+    color: ${COLORS.secondary};
+    font-family: ${FONTS.PRETENDARD[700]};
     font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
 `;
 
 const EasyLoginLineContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 `;
 
 const EasyLoginLine = styled.div`
     width: 8.125rem;
     height: 0.0625rem;
-    background: #e0e0e0;
+    background: #e0e0e0; /* 팔레트에 없는 컬러여서 컬러코드로 입력했습니다 */
 `;
 
 const EasyLogin = styled.div`
-    color: #a5a5a5;
+    color: ${COLORS.darkGrey};
     text-align: center;
-    font-family: 'Noto Sans KR';
+    font-family: ${FONTS.PRETENDARD[500]};
     font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1.3125rem; /* 150% */
-    letter-spacing: -0.02rem;
 `;
 
 const SocialLoginIcons = styled.div`
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
 `;
 
 const LoginIconWrapper = styled.div`
