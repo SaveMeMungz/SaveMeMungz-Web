@@ -1,6 +1,6 @@
 'use client';
 
-import { FaLock, FaUserAlt } from 'react-icons/fa';
+import { LockOutlined, UserOutlined } from '@ant-design/icons'; // 아이콘 추가
 import styled from 'styled-components';
 
 import { COLORS, TEXT_COLORS } from '../../../../constants/colors';
@@ -14,22 +14,26 @@ const SignUpInput = ({
     onChange,
     passwordVisible,
     togglePasswordVisibility,
+    errorMessage,
 }) => {
     return (
-        <InputWrapper>
-            <IconWrapper>{type === 'id' ? <FaUserAlt /> : <FaLock />}</IconWrapper>
-            <Divider /> {/* 세로 줄 추가 */}
-            <StyledInput
-                type={type === 'password' && !passwordVisible ? 'password' : 'text'}
-                name={name}
-                value={value}
-                placeholder={placeholder}
-                onChange={onChange}
-            />
-            {type === 'password' && (
-                <ShowButton onClick={togglePasswordVisibility}>{passwordVisible ? 'Hide' : 'Show'}</ShowButton>
-            )}
-        </InputWrapper>
+        <>
+            <InputWrapper>
+                <IconWrapper>{type === 'id' ? <UserOutlined /> : <LockOutlined />}</IconWrapper>
+                <Divider /> {/* 세로 줄 추가 */}
+                <StyledInput
+                    type={(type === 'password' || type === 'passwordCheck') && !passwordVisible ? 'password' : 'text'}
+                    name={name}
+                    value={value}
+                    placeholder={placeholder}
+                    onChange={onChange}
+                />
+                {(type === 'password' || type === 'passwordCheck') && (
+                    <ShowButton onClick={togglePasswordVisibility}>{passwordVisible ? 'Hide' : 'Show'}</ShowButton>
+                )}
+            </InputWrapper>
+            {errorMessage && <ErrorText>{errorMessage}</ErrorText>} {/* 유효성 검사 오류 메시지 표시 */}
+        </>
     );
 };
 
@@ -89,4 +93,16 @@ const ShowButton = styled.button`
     &:focus {
         outline: none;
     }
+`;
+
+const ErrorText = styled.div`
+    width: 100%;
+    color: #ff6464;
+    text-align: center;
+    font-family: 'Noto Sans KR';
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1rem;
+    letter-spacing: -0.01875rem;
 `;

@@ -114,6 +114,7 @@ const Letter = styled.div`
     font-size: 1rem;
     color: ${TEXT_COLORS.default};
     font-family: ${FONTS.PRETENDARD[400]};
+    margin-bottom: 1rem;
 `;
 
 const ContentContainer = styled.div`
