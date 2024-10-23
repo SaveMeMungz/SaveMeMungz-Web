@@ -6,9 +6,10 @@ import styled from 'styled-components';
 
 import whitepawImg from '../../../assets/images/white-paw.png';
 import CustomButton from '../../../components/common/CustomButton';
-import { BACKGROUND_COLORS, BUTTON_COLORS, TEXT_COLORS } from '../../../constants/colors';
+import { BACKGROUND_COLORS, BUTTON_COLORS, COLORS, TEXT_COLORS } from '../../../constants/colors';
 import { FONTS } from '../../../constants/font';
 import { PADDING_HORIZONTAL, PADDING_VERTICAL } from '../../../constants/space';
+import SignUpInput from './components/SignUpInput';
 
 const SignUp = () => {
     return (
@@ -20,12 +21,20 @@ const SignUp = () => {
             <SignUpTitle>회원가입</SignUpTitle>
 
             <ContentContainer>
+                <InputFieldContainer>
+                    <SignUpInput />
+                    <SignUpInput />
+                    <SignUpInput />
+                </InputFieldContainer>
+
                 <SignUpButtonContainerColumn>
                     <CustomButton color={BUTTON_COLORS.secondary} text="회원가입 하기" route="/login" />
                 </SignUpButtonContainerColumn>
 
-                <AlreadyMember>이미 회원이신가요?</AlreadyMember>
-                <GoLogin>로그인 하기</GoLogin>
+                <BottomContainer>
+                    <AlreadyMember>이미 회원이신가요?</AlreadyMember>
+                    <GoLogin>로그인 하기</GoLogin>
+                </BottomContainer>
             </ContentContainer>
         </Container>
     );
@@ -57,6 +66,8 @@ const ContentContainer = styled.div`
     gap: 0.5rem;
 `;
 
+const InputFieldContainer = styled.div``;
+
 const SignUpButtonContainerColumn = styled.div`
     display: flex;
     flex-direction: column;
@@ -64,21 +75,21 @@ const SignUpButtonContainerColumn = styled.div`
     margin-top: 2rem;
 `;
 
+const BottomContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
 const AlreadyMember = styled.div`
-    color: #1f5a6e;
-    font-family: 'Noto Sans KR';
+    color: ${COLORS.secondary};
+    font-family: ${FONTS.PRETENDARD[400]};
     font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
 `;
 
 const GoLogin = styled.div`
-    color: #1f5a6e;
-    font-family: 'Noto Sans KR';
+    color: ${COLORS.secondary};
+    font-family: ${FONTS.PRETENDARD[700]};
     font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
     text-decoration-line: underline;
 `;
