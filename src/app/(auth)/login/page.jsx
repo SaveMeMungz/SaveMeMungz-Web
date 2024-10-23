@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 import googleLogin from '../../../assets/images/google.png';
 import kakaoLogin from '../../../assets/images/kakao.png';
+import questionImg from '../../../assets/images/login-question.png';
 import logoImg from '../../../assets/images/logo.png';
 import symbolImg from '../../../assets/images/symbol.png';
 import CustomButton from '../../../components/common/CustomButton';
@@ -28,6 +29,10 @@ const Login = () => {
 
     return (
         <Container>
+            <QuestionWrapper>
+                <Image src={questionImg} alt="question" width={60} height={60} />
+            </QuestionWrapper>
+
             <LogoContainerColumn>
                 <SymbolWrapper>
                     <Image src={symbolImg} alt="Symbol" layout="fill" objectFit="contain" />
@@ -90,7 +95,6 @@ export default Login;
 
 const Container = styled.div`
     background-color: ${BACKGROUND_COLORS.default};
-    padding-top: 4rem;
     padding-bottom: 2rem;
 `;
 
@@ -99,6 +103,14 @@ const LogoContainerColumn = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 0.7rem;
+`;
+
+const QuestionWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
 `;
 
 const SymbolWrapper = styled.div`
