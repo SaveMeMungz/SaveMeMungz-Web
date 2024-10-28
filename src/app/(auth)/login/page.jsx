@@ -35,10 +35,10 @@ const Login = () => {
 
             <LogoContainerColumn>
                 <SymbolWrapper>
-                    <Image src={symbolImg} alt="Symbol" layout="fill" objectFit="contain" />
+                    <Image src={symbolImg} alt="Symbol" fill style={{ objectFit: 'contain' }} />
                 </SymbolWrapper>
                 <LogoWrapper>
-                    <Image src={logoImg} alt="Logo" layout="fill" objectFit="contain" />
+                    <Image src={logoImg} alt="Logo" fill style={{ objectFit: 'contain' }} />
                 </LogoWrapper>
 
                 <Letter>함께하는 따뜻한 동행 🐾</Letter>
