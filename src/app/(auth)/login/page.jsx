@@ -9,6 +9,7 @@ import questionImg from '../../../assets/icons/question-icon.png';
 import googleLogin from '../../../assets/images/google.png';
 import kakaoLogin from '../../../assets/images/kakao.png';
 import logoImg from '../../../assets/images/logo.png';
+import naverLogin from '../../../assets/images/naver.png';
 import symbolImg from '../../../assets/images/symbol.png';
 import CustomButton from '../../../components/common/CustomButton';
 import { BACKGROUND_COLORS, BUTTON_COLORS, COLORS, TEXT_COLORS } from '../../../constants/colors';
@@ -29,64 +30,56 @@ const Login = () => {
 
     return (
         <Container>
+            {/* 온보딩 아이콘 */}
             <QuestionWrapper>
                 <Image src={questionImg} alt="question" width={60} height={60} />
             </QuestionWrapper>
-
-            <LogoContainerColumn>
-                <SymbolWrapper>
-                    <Image src={symbolImg} alt="Symbol" fill style={{ objectFit: 'contain' }} />
-                </SymbolWrapper>
-                <LogoWrapper>
-                    <Image src={logoImg} alt="Logo" fill style={{ objectFit: 'contain' }} />
-                </LogoWrapper>
-
-                <Letter>함께하는 따뜻한 동행 🐾</Letter>
-            </LogoContainerColumn>
-
-            <ContentContainer>
-                <LoginInputContainer>
-                    <LoginInput name="id" type="id" value={id} placeholder="아이디" onChange={handleIdChange} />
-
-                    <LoginInput
-                        name="password"
-                        type="password"
-                        value={password}
-                        placeholder="비밀번호"
-                        passwordVisible={passwordVisible}
-                        togglePasswordVisibility={togglePasswordVisibility}
-                        onChange={handlePwChange}
-                    />
-
-                    <AutoLoginContainerRow>
+            {/* 메인 섹션 */}
+            <MainSection>
+                {/* 로고 영역 */}
+                <LogoContainerColumn>
+                    <Symbol src={symbolImg} />
+                    <Logo src={logoImg} />
+                    <Letter>함께하는 따뜻한 동행 🐾</Letter>
+                </LogoContainerColumn>
+                {/* 컨텐츠 영역 */}
+                <ContentContainer>
+                    <LoginInputContainer>
+                        <LoginInput name="id" type="id" value={id} placeholder="아이디" onChange={handleIdChange} />
+                        <LoginInput
+                            name="password"
+                            type="password"
+                            value={password}
+                            placeholder="비밀번호"
+                            passwordVisible={passwordVisible}
+                            togglePasswordVisibility={togglePasswordVisibility}
+                            onChange={handlePwChange}
+                        />
                         <StyledCheckbox checked={autoLogin} onChange={handleAutoLoginChange}>
                             자동 로그인
                         </StyledCheckbox>
-                    </AutoLoginContainerRow>
-                </LoginInputContainer>
+                    </LoginInputContainer>
 
-                <SignInUpButtonContainerColumn>
-                    <CustomButton color={BUTTON_COLORS.primary} text="로그인" route="/onboarding" />
-                    <CustomButton color={BUTTON_COLORS.secondary} text="회원가입" route="/sign-up" />
-                </SignInUpButtonContainerColumn>
+                    <SignInUpButtonContainerColumn>
+                        <CustomButton color={BUTTON_COLORS.primary} text="로그인" route="/onboarding" />
+                        <CustomButton color={BUTTON_COLORS.secondary} text="회원가입" route="/sign-up" />
+                    </SignInUpButtonContainerColumn>
 
-                <FindIdPw>아이디 • 비밀번호 찾기</FindIdPw>
+                    <FindIdPw>아이디 • 비밀번호 찾기</FindIdPw>
 
-                <EasyLoginLineContainer>
-                    <EasyLoginLine />
-                    <EasyLogin>간편 로그인</EasyLogin>
-                    <EasyLoginLine />
-                </EasyLoginLineContainer>
-
-                <SocialLoginIcons>
-                    <LoginIconWrapper>
-                        <Image src={kakaoLogin} alt="Kakao Login" width={50} height={50} />
-                    </LoginIconWrapper>
-                    <LoginIconWrapper>
-                        <Image src={googleLogin} alt="Google Login" width={50} height={50} />
-                    </LoginIconWrapper>
-                </SocialLoginIcons>
-            </ContentContainer>
+                    <EasyLoginLineContainer>
+                        <EasyLoginLine />
+                        <EasyLogin>간편 로그인</EasyLogin>
+                        <EasyLoginLine />
+                    </EasyLoginLineContainer>
+                    {/* 소셜 로그인 */}
+                    <SocialLoginIconWrapper>
+                        <KakaoIcon src={kakaoLogin} alt="Kakao Login" width={50} height={50} />
+                        <NaverIcon src={naverLogin} alt="Naver Login" width={50} height={50} />
+                        <GoogleIcon src={googleLogin} alt="Google Login" width={50} height={50} />
+                    </SocialLoginIconWrapper>
+                </ContentContainer>
+            </MainSection>
         </Container>
     );
 };
@@ -94,41 +87,46 @@ const Login = () => {
 export default Login;
 
 const Container = styled.div`
+    ${PADDING_HORIZONTAL}
     background-color: ${COLORS.white};
-    min-height: 100vh; /* 화면 전체 높이를 채움 */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+`;
+
+const QuestionWrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.25rem;
+`;
+
+const MainSection = styled.div`
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    position: relative;
+    margin-top: 2rem;
 `;
 
 const LogoContainerColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.5rem;
 `;
 
-const QuestionWrapper = styled.div`
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-`;
-
-const SymbolWrapper = styled.div`
+const Symbol = styled(Image)`
     width: 9.375rem;
     height: 8.27344rem;
-    position: relative;
 `;
 
-const LogoWrapper = styled.div`
+const Logo = styled(Image)`
     width: 11.25rem;
     height: 2.67938rem;
-    position: relative;
 `;
 
 const Letter = styled.div`
+    margin-top: 0.5rem;
     font-size: 1rem;
     color: ${TEXT_COLORS.default};
     font-family: ${FONTS.PRETENDARD[400]};
@@ -136,22 +134,16 @@ const Letter = styled.div`
 `;
 
 const ContentContainer = styled.div`
-    ${PADDING_HORIZONTAL}
     ${PADDING_VERTICAL}
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin-bottom: 2rem;
 `;
 
 const LoginInputContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-`;
-
-const AutoLoginContainerRow = styled.div`
-    display: flex;
-    align-items: center;
     gap: 0.5rem;
 `;
 
@@ -161,22 +153,28 @@ const StyledCheckbox = styled(Checkbox)`
         width: 1.15rem; /* 체크박스 너비 */
         height: 1.15rem; /* 체크박스 높이 */
         border-radius: 50%; /* 원형 체크박스 */
-        border-color: ${COLORS.primary}; /* 체크박스 테두리 색상 */
+        border-color: ${COLORS.primary} !important; /* 체크박스 테두리 색상 */
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative; /* 체크 표시를 절대 위치로 배치하기 위해 설정 */
     }
+
+    /* 체크된 상태의 hover도 오버라이드 */
+    .ant-checkbox-checked:hover .ant-checkbox-inner {
+        background-color: ${COLORS.primary} !important;
+        border-color: ${COLORS.primary} !important;
+    }
     .ant-checkbox-checked .ant-checkbox-inner {
-        background-color: ${COLORS.primary}; /* 체크된 상태에서 배경색 */
-        border-color: ${COLORS.primary}; /* 체크된 상태에서 테두리 색상 */
+        background-color: ${COLORS.primary} !important; /* 체크된 상태에서 배경색 */
+        border-color: ${COLORS.primary} !important; /* 체크된 상태에서 테두리 색상 */
     }
     .ant-checkbox-checked .ant-checkbox-inner::before {
         content: '✓'; /* 체크 표시 모양 */
         color: ${COLORS.white}; /* 체크 표시 색상 */
         font-size: 0.75rem; /* 체크 표시 크기 */
         position: absolute;
-        top: 55%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%); /* 정확한 중앙 위치 */
     }
@@ -214,6 +212,7 @@ const EasyLoginLineContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-top: 1rem;
+    gap: 0.5rem;
 `;
 
 const EasyLoginLine = styled.div`
@@ -222,25 +221,34 @@ const EasyLoginLine = styled.div`
     background: ${BACKGROUND_COLORS.divider};
 `;
 
-const EasyLogin = styled.div`
+const EasyLogin = styled.p`
     color: ${COLORS.darkGrey};
     text-align: center;
     font-family: ${FONTS.PRETENDARD[500]};
     font-size: 0.875rem;
+    white-space: nowrap;
 `;
 
-const SocialLoginIcons = styled.div`
+const SocialLoginIconWrapper = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 0.5rem;
-    gap: 0.5rem;
+    gap: 1rem;
 `;
 
-const LoginIconWrapper = styled.div`
+const IconStyles = `
     width: 3.125rem;
     height: 3.125rem;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+`;
+
+const KakaoIcon = styled(Image)`
+    ${IconStyles}
+`;
+
+const NaverIcon = styled(Image)`
+    ${IconStyles}
+`;
+
+const GoogleIcon = styled(Image)`
+    ${IconStyles}
 `;
