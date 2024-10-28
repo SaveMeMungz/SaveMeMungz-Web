@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import whitepawImg from '../../../assets/images/white-paw.png';
 import CustomButton from '../../../components/common/CustomButton';
-import { BACKGROUND_COLORS, BUTTON_COLORS, COLORS, TEXT_COLORS } from '../../../constants/colors';
+import { BUTTON_COLORS, COLORS, TEXT_COLORS } from '../../../constants/colors';
 import { FONTS } from '../../../constants/font';
 import { PADDING_HORIZONTAL, PADDING_VERTICAL } from '../../../constants/space';
 import SignUpInput from './components/SignUpInput';
@@ -16,7 +16,8 @@ const SignUp = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [passwordCheck, setPasswordCheck] = useState('');
-    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState(false); // 비밀번호 표시 상태
+    const [passwordCheckVisible, setPasswordCheckVisible] = useState(false); // 비밀번호 확인 표시 상태
     const [errors, setErrors] = useState({
         id: '',
         password: '',
@@ -26,7 +27,6 @@ const SignUp = () => {
     const handleIdChange = (e) => {
         setId(e.target.value);
         if (e.target.value === 'existingId') {
-            // 이미 존재하는 아이디를 예시로 검사
             setErrors((prevErrors) => ({ ...prevErrors, id: '이미 존재하는 아이디입니다' }));
         } else {
             setErrors((prevErrors) => ({ ...prevErrors, id: '' }));
@@ -48,6 +48,7 @@ const SignUp = () => {
     };
 
     const togglePasswordVisibility = () => setPasswordVisible(!passwordVisible);
+    const togglePasswordCheckVisibility = () => setPasswordCheckVisible(!passwordCheckVisible);
 
     return (
         <Container>
@@ -65,7 +66,7 @@ const SignUp = () => {
                         value={id}
                         placeholder="아이디"
                         onChange={handleIdChange}
-                        errorMessage={errors.id} // 아이디 중복 검사 오류 메시지
+                        errorMessage={errors.id}
                     />
 
                     <SignUpInput
@@ -84,8 +85,8 @@ const SignUp = () => {
                         type="passwordCheck"
                         value={passwordCheck}
                         placeholder="비밀번호 확인"
-                        passwordVisible={passwordVisible}
-                        togglePasswordVisibility={togglePasswordVisibility}
+                        passwordVisible={passwordCheckVisible}
+                        togglePasswordVisibility={togglePasswordCheckVisibility}
                         onChange={handlePwCheckChange}
                         errorMessage={errors.passwordCheck}
                     />
@@ -109,7 +110,7 @@ const SignUp = () => {
 export default SignUp;
 
 const Container = styled.div`
-    background-color: ${BACKGROUND_COLORS.default};
+    background-color: ${COLORS.white};
     min-height: 100vh; /* 화면 전체 높이를 채움 */
     display: flex;
     flex-direction: column;

@@ -1,13 +1,13 @@
 'use client';
 
-import { Checkbox } from 'antd'; // Ant Design Checkbox import
+import { Checkbox } from 'antd';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import questionImg from '../../../assets/icons/question-icon.png';
 import googleLogin from '../../../assets/images/google.png';
 import kakaoLogin from '../../../assets/images/kakao.png';
-import questionImg from '../../../assets/images/login-question.png';
 import logoImg from '../../../assets/images/logo.png';
 import symbolImg from '../../../assets/images/symbol.png';
 import CustomButton from '../../../components/common/CustomButton';
@@ -70,7 +70,7 @@ const Login = () => {
                     <CustomButton color={BUTTON_COLORS.secondary} text="회원가입" route="/sign-up" />
                 </SignInUpButtonContainerColumn>
 
-                <FindIdPw>아이디•비밀번호 찾기</FindIdPw>
+                <FindIdPw>아이디 • 비밀번호 찾기</FindIdPw>
 
                 <EasyLoginLineContainer>
                     <EasyLoginLine />
@@ -94,13 +94,12 @@ const Login = () => {
 export default Login;
 
 const Container = styled.div`
-    background-color: ${BACKGROUND_COLORS.default};
-    padding-bottom: 2rem;
+    background-color: ${COLORS.white};
     min-height: 100vh; /* 화면 전체 높이를 채움 */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* 세로 중앙 정렬 */
-    align-items: center; /* 가로 중앙 정렬 */
+    justify-content: center;
+    align-items: center;
     position: relative;
 `;
 
@@ -157,13 +156,32 @@ const AutoLoginContainerRow = styled.div`
 `;
 
 const StyledCheckbox = styled(Checkbox)`
+    margin-left: 0.18rem;
     .ant-checkbox-inner {
+        width: 1.15rem; /* 체크박스 너비 */
+        height: 1.15rem; /* 체크박스 높이 */
         border-radius: 50%; /* 원형 체크박스 */
         border-color: ${COLORS.primary}; /* 체크박스 테두리 색상 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative; /* 체크 표시를 절대 위치로 배치하기 위해 설정 */
     }
     .ant-checkbox-checked .ant-checkbox-inner {
         background-color: ${COLORS.primary}; /* 체크된 상태에서 배경색 */
         border-color: ${COLORS.primary}; /* 체크된 상태에서 테두리 색상 */
+    }
+    .ant-checkbox-checked .ant-checkbox-inner::before {
+        content: '✓'; /* 체크 표시 모양 */
+        color: ${COLORS.white}; /* 체크 표시 색상 */
+        font-size: 0.75rem; /* 체크 표시 크기 */
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* 정확한 중앙 위치 */
+    }
+    .ant-checkbox-inner::after {
+        display: none; /* 기본 체크 표시 제거 */
     }
     span {
         font-family: ${FONTS.PRETENDARD[400]};
@@ -201,7 +219,7 @@ const EasyLoginLineContainer = styled.div`
 const EasyLoginLine = styled.div`
     width: 8.125rem;
     height: 0.0625rem;
-    background: #e0e0e0; /* 팔레트에 없는 컬러여서 컬러코드로 입력했습니다 */
+    background: ${BACKGROUND_COLORS.divider};
 `;
 
 const EasyLogin = styled.div`

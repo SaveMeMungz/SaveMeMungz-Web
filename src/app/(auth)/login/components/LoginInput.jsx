@@ -40,14 +40,14 @@ const InputWrapper = styled.div`
     height: 3rem;
     display: flex;
     align-items: center;
-    background-color: ${COLORS.softMint};
+    background-color: ${COLORS.lightMint};
     border-radius: 0.5rem;
     padding: 0.75rem;
     position: relative;
 `;
 
 const StyledInput = styled.input`
-    background-color: ${COLORS.softMint};
+    background-color: ${COLORS.lightMint};
     border: none;
     font-family: ${FONTS.PRETENDARD[400]};
     font-size: 0.875rem;
