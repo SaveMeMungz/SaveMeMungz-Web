@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: savememungz-web
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+    command: npm run dev # 프로젝트 시작 명령어를 npm run start로 설정 (필요에 따라 수정 가능)
+    volumes:
+      - .:/app
+      - /app/node_modules # node_modules는 호스트와 공유하지 않도록 예외처리
